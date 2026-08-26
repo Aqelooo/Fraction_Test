@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fraction | Jordan's Smart Cardless Cashback App</title>
+  <meta name="description" content="Earn real cashback at top stores across Jordan. Redeem in-store or cash out directly via CliQ or agents. No bank card or account required." />
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            fraction: {
+              50: '#f0f7ff',
+              100: '#e0effe',
+              200: '#bae0fd',
+              500: '#2563eb',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              accent: '#0284c7',
+              dark: '#0f172a',
+              card: '#f8fafc',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .hero-mesh {
+      background: radial-gradient(circle at 90% 15%, rgba(37, 99, 235, 0.12) 0%, rgba(255, 255, 255, 0) 50%),
+                  radial-gradient(circle at 10% 85%, rgba(2, 132, 199, 0.08) 0%, rgba(255, 255, 255, 0) 50%),
+                  #f8fbff;
+    }
+    .phone-shadow {
+      box-shadow: 0 25px 60px -15px rgba(29, 78, 216, 0.18), 0 0 0 1px rgba(226, 232, 240, 0.8);
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="font-sans bg-[#fbfdff] text-slate-800 antialiased selection:bg-fraction-500 selection:text-white">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Fraction Logo -->
+        <a href="#home" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-fraction-700 to-fraction-500 flex items-center justify-center text-white shadow-md shadow-fraction-500/20 group-hover:scale-105 transition duration-300">
+            <i data-lucide="percent" class="w-5 h-5 stroke-[2.5]"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-2xl font-extrabold tracking-tight text-slate-900 leading-none">Fraction<span class="text-fraction-500">.</span></span>
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider mt-0.5">Jordan Cashback</span>
+          </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <nav class="hidden md:flex items-center gap-7 font-semibold text-slate-600 text-sm">
+          <a href="#home" class="hover:text-fraction-600 transition">Home</a>
+          <a href="#how-it-works" class="hover:text-fraction-600 transition">How it Works</a>
+          <a href="#categories" class="hover:text-fraction-600 transition">Categories</a>
+          <a href="#stores" class="hover:text-fraction-600 transition">Network Stores</a>
+          
+          <!-- Direct integration with market-calculator.html -->
+          <a href="market-calculator.html" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-fraction-50 text-fraction-600 border border-fraction-200 hover:bg-fraction-100 transition">
+            <i data-lucide="line-chart" class="w-4 h-4"></i>
+            <span>Merchant Insights</span>
+          </a>
+          <a href="#contact" class="hover:text-fraction-600 transition">Contact</a>
+        </nav>
+
+        <!-- CTA Buttons -->
+        <div class="hidden sm:flex items-center gap-3">
+          <a href="#download" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-fraction-600 text-white font-bold text-sm shadow-md shadow-fraction-600/20 hover:bg-fraction-700 transition">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Get App</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden border-b border-slate-100 bg-white px-6 py-5 space-y-3 shadow-lg">
+      <a href="#home" class="block font-semibold text-slate-700 hover:text-fraction-600">Home</a>
+      <a href="#how-it-works" class="block font-semibold text-slate-700 hover:text-fraction-600">How it Works</a>
+      <a href="#categories" class="block font-semibold text-slate-700 hover:text-fraction-600">Categories</a>
+      <a href="#stores" class="block font-semibold text-slate-700 hover:text-fraction-600">Network Stores</a>
+      <a href="market-calculator.html" class="block font-bold text-fraction-600 hover:text-fraction-700">Merchant Insights</a>
+      <a href="#contact" class="block font-semibold text-slate-700 hover:text-fraction-600">Contact Us</a>
+      <a href="#download" class="block text-center w-full py-3 rounded-xl bg-fraction-600 text-white font-bold mt-2">Download Fraction</a>
+    </div>
+  </header>
+
+  <!-- ================= 1. HERO SECTION ================= -->
+  <section id="home" class="relative pt-32 pb-16 md:pt-40 md:pb-24 hero-mesh overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Text -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-fraction-100 text-fraction-700 text-xs font-bold border border-fraction-200">
+            <span class="flex h-2 w-2 rounded-full bg-fraction-600 animate-ping"></span>
+            🇯🇴 Jordan's #1 Cardless Cashback App
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+            Shop in Jordan. <br />
+            Earn Instant Cashback. <br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-fraction-600 to-sky-500">No Bank Cards Needed.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+            Earn real Jordanian Dinars (<strong class="text-slate-900">JD</strong>) at your favorite stores by simply letting the cashier scan your QR code or enter your User ID. Cash out via <strong class="text-slate-900">CliQ</strong>, local cash agents, or pay for your next purchase.
+          </p>
+
+          <!-- Feature badges matching screenshot mechanics -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+            <div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-fraction-50 text-fraction-600 flex items-center justify-center font-bold">
+                <i data-lucide="qr-code" class="w-5 h-5"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-xs font-bold text-slate-900">Scan & Earn</div>
+                <div class="text-[11px] text-slate-500">QR or User ID</div>
+              </div>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold">
+                <i data-lucide="arrow-right-left" class="w-5 h-5"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-xs font-bold text-slate-900">CliQ Cashout</div>
+                <div class="text-[11px] text-slate-500">Instant to any bank</div>
+              </div>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+                <i data-lucide="wallet" class="w-5 h-5"></i>
+              </div>
+              <div class="text-left">
+                <div class="text-xs font-bold text-slate-900">Spend Balance</div>
+                <div class="text-[11px] text-slate-500">In-store wallet pay</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Buttons -->
+          <div class="pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#download" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-fraction-600 text-white font-bold text-base shadow-xl shadow-fraction-600/30 hover:bg-fraction-700 transition">
+              <i data-lucide="download" class="w-5 h-5"></i>
+              Download Fraction
+            </a>
+            <a href="#stores" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white text-slate-800 border border-slate-200 font-bold text-base shadow-sm hover:bg-slate-50 transition">
+              Browse Stores
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Pixel-Perfect App Screen Reproduction (From Screenshot 3 & 1) -->
+        <div class="lg:col-span-5 flex justify-center relative">
+          
+          <div class="relative w-full max-w-[340px] bg-white rounded-[40px] p-4 phone-shadow border border-slate-200/80">
+            
+            <!-- App Header Mockup -->
+            <div class="flex items-center justify-between pt-2 pb-4 px-2">
+              <div>
+                <h3 class="text-xl font-extrabold text-slate-900 tracking-tight">Hello, Ahmad!</h3>
+              </div>
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-fraction-100 text-fraction-600 flex items-center justify-center font-bold text-xs">
+                  <i data-lucide="user" class="w-4 h-4"></i>
+                </div>
+                <div class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
+                  <i data-lucide="bell" class="w-4 h-4"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Authentic Cashback Wallet Card (As in App Screenshot) -->
+            <div class="bg-gradient-to-br from-emerald-50/60 via-sky-50/80 to-blue-100/70 rounded-3xl p-5 border border-sky-100 mb-5 relative overflow-hidden">
+              <div class="text-xs text-slate-600 font-medium">Available Cashback Rewards:</div>
+              <div class="text-2xl font-black text-slate-900 mt-1 mb-3">JD 250.925</div>
+              
+              <div class="text-[11px] text-slate-500 font-medium leading-tight">
+                Available Cashback Rewards to Cash-Out
+                <div class="font-bold text-slate-800 text-xs mt-0.5">JD 198.125</div>
+              </div>
+
+              <div class="mt-4 flex flex-col gap-2">
+                <button class="w-full py-2.5 bg-fraction-600 text-white rounded-xl font-bold text-xs shadow-md shadow-fraction-600/20">
+                  Cash Out
+                </button>
+                <button class="w-full py-2 bg-white text-fraction-600 border border-fraction-300 rounded-xl font-bold text-xs hover:bg-fraction-50 transition">
+                  Show QR Code
+                </button>
+              </div>
+            </div>
+
+            <!-- Featured Store Card (Bella Napoli / Al Bayarah) -->
+            <div class="space-y-2 mb-4 px-1">
+              <div class="flex justify-between items-center">
+                <span class="text-sm font-bold text-slate-900">Featured Stores</span>
+                <span class="text-xs font-bold text-fraction-600">See All</span>
+              </div>
+
+              <div class="bg-slate-50 rounded-2xl p-3 border border-slate-100 flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-800 shadow-sm">
+                  🍕 BN
+                </div>
+                <div class="flex-1 min-w-0">
+                  <h4 class="text-xs font-bold text-slate-900 truncate">Bella Napoli Pizza</h4>
+                  <p class="text-[10px] text-slate-500">Restaurants</p>
+                  <span class="text-xs font-extrabold text-fraction-600">10% Cashback</span>
+                </div>
+                <i data-lucide="heart" class="w-4 h-4 text-fraction-600 fill-fraction-600"></i>
+              </div>
+            </div>
+
+            <!-- Simulated Bottom App Bar (Exact from app) -->
+            <div class="pt-3 border-t border-slate-100 grid grid-cols-5 text-center text-[10px] font-semibold text-slate-400">
+              <div class="text-fraction-600 flex flex-col items-center gap-0.5">
+                <i data-lucide="home" class="w-4 h-4"></i> Home
+              </div>
+              <div class="flex flex-col items-center gap-0.5 hover:text-slate-600">
+                <i data-lucide="store" class="w-4 h-4"></i> Network
+              </div>
+              <div class="flex flex-col items-center gap-0.5 hover:text-slate-600">
+                <i data-lucide="receipt" class="w-4 h-4"></i> History
+              </div>
+              <div class="flex flex-col items-center gap-0.5 hover:text-slate-600">
+                <i data-lucide="heart" class="w-4 h-4"></i> Favorites
+              </div>
+              <div class="flex flex-col items-center gap-0.5 hover:text-slate-600">
+                <i data-lucide="user" class="w-4 h-4"></i> Profile
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= APP SCREENSHOTS GALLERY / SHOWCASE ================= -->
+  <section class="py-16 bg-white border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider">Inside Fraction</h2>
+        <p class="text-3xl font-extrabold text-slate-900 mt-1">Simple, Fast & Transparent</p>
+        <p class="text-slate-500 text-sm mt-2">Check out real screenshots from the Fraction mobile app.</p>
+      </div>
+
+      <!-- Real Screenshots Showcase Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        
+        <!-- Screen 1: Top Stores & Categories -->
+        <div class="bg-slate-50 rounded-3xl p-3 border border-slate-200/80 shadow-sm text-center">
+          <div class="bg-slate-100 rounded-2xl aspect-[9/19] overflow-hidden flex flex-col justify-center items-center relative group">
+            <!-- If you upload images to images/screen-categories.png it replaces here -->
+            <img src="images/screen-categories.png" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover" alt="Categories Screen" />
+            <div class="p-4 text-left hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold text-slate-400">Categories</span>
+                <p class="text-xs font-bold text-slate-800 mt-1">Restaurants, Cafes, Fashion, Tech & 6+ more</p>
+              </div>
+              <div class="p-2.5 bg-white rounded-xl text-center shadow-xs text-xs font-bold text-fraction-600">
+                9+ Categories
+              </div>
+            </div>
+          </div>
+          <p class="text-xs font-bold text-slate-800 mt-3">Explore Categories</p>
+          <p class="text-[11px] text-slate-500">Everyday retail in Jordan</p>
+        </div>
+
+        <!-- Screen 2: Network Store Directory -->
+        <div class="bg-slate-50 rounded-3xl p-3 border border-slate-200/80 shadow-sm text-center">
+          <div class="bg-slate-100 rounded-2xl aspect-[9/19] overflow-hidden flex flex-col justify-center items-center relative group">
+            <img src="images/screen-network.png" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover" alt="Network Screen" />
+            <div class="p-4 text-left hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold text-slate-400">Network</span>
+                <p class="text-xs font-bold text-slate-800 mt-1">Live Store Directory with Search & Filters</p>
+              </div>
+              <div class="p-2.5 bg-white rounded-xl text-center shadow-xs text-xs font-bold text-fraction-600">
+                Search & Filter
+              </div>
+            </div>
+          </div>
+          <p class="text-xs font-bold text-slate-800 mt-3">Store Network</p>
+          <p class="text-[11px] text-slate-500">Sorted by highest cashback %</p>
+        </div>
+
+        <!-- Screen 3: Transactions History -->
+        <div class="bg-slate-50 rounded-3xl p-3 border border-slate-200/80 shadow-sm text-center">
+          <div class="bg-slate-100 rounded-2xl aspect-[9/19] overflow-hidden flex flex-col justify-center items-center relative group">
+            <img src="images/screen-transactions.png" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover" alt="Transactions Screen" />
+            <div class="p-4 text-left hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold text-slate-400">Transactions</span>
+                <p class="text-xs font-bold text-slate-800 mt-1">Real-time breakdown of Earned JOD</p>
+              </div>
+              <div class="p-2.5 bg-white rounded-xl text-center shadow-xs text-xs font-bold text-emerald-600">
+                +JD 2.000 Earned
+              </div>
+            </div>
+          </div>
+          <p class="text-xs font-bold text-slate-800 mt-3">Transaction History</p>
+          <p class="text-[11px] text-slate-500">Earned, Spent & Cashed Out</p>
+        </div>
+
+        <!-- Screen 4: CliQ & Settings Profile -->
+        <div class="bg-slate-50 rounded-3xl p-3 border border-slate-200/80 shadow-sm text-center">
+          <div class="bg-slate-100 rounded-2xl aspect-[9/19] overflow-hidden flex flex-col justify-center items-center relative group">
+            <img src="images/screen-profile.png" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover" alt="Profile Screen" />
+            <div class="p-4 text-left hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
+              <div>
+                <span class="text-[11px] font-bold text-slate-400">Profile</span>
+                <p class="text-xs font-bold text-slate-800 mt-1">CliQ Management & Account Info</p>
+              </div>
+              <div class="p-2.5 bg-white rounded-xl text-center shadow-xs text-xs font-bold text-slate-800">
+                CliQ Alias Linked
+              </div>
+            </div>
+          </div>
+          <p class="text-xs font-bold text-slate-800 mt-3">CliQ & Account</p>
+          <p class="text-[11px] text-slate-500">Fast withdrawals anytime</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 2. APP CATEGORIES (EXACT FROM APP SCREENSHOT) ================= -->
+  <section id="categories" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-xl mx-auto mb-14">
+        <h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider">Browse Categories</h2>
+        <p class="text-3xl font-extrabold text-slate-900 mt-1">Where Can You Earn?</p>
+        <p class="text-slate-500 text-sm mt-2">Fraction is expanding across all daily lifestyle categories in Jordan.</p>
+      </div>
+
+      <!-- Categories 9-Grid (Exact match to Fraction App UI) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
+        
+        <!-- Restaurants -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center hover:border-fraction-300 hover:shadow-md transition">
+          <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
+            <i data-lucide="utensils" class="w-7 h-7"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Restaurants</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Pizza, Burgers, Fine Dining</p>
+        </div>
+
+        <!-- Cafes -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center hover:border-fraction-300 hover:shadow-md transition">
+          <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
+            <i data-lucide="coffee" class="w-7 h-7"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Cafes</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Specialty Coffee & Bakeries</p>
+        </div>
+
+        <!-- Fashion -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center hover:border-fraction-300 hover:shadow-md transition">
+          <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
+            <i data-lucide="shirt" class="w-7 h-7"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Fashion</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Men, Women & Footwear</p>
+        </div>
+
+        <!-- Electronics -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center hover:border-fraction-300 hover:shadow-md transition">
+          <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
+            <i data-lucide="laptop" class="w-7 h-7"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Electronics</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Mobiles, Accessories & Tech</p>
+        </div>
+
+        <!-- Groceries -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center hover:border-fraction-300 hover:shadow-md transition">
+          <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
+            <i data-lucide="shopping-cart" class="w-7 h-7"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Groceries</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Supermarkets & Markets</p>
+        </div>
+
+        <!-- Health & Beauty -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center hover:border-fraction-300 hover:shadow-md transition">
+          <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
+            <i data-lucide="sparkles" class="w-7 h-7"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Health & Beauty</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Skincare, Salons & Wellness</p>
+        </div>
+
+        <!-- Home & Garden -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center hover:border-fraction-300 hover:shadow-md transition">
+          <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
+            <i data-lucide="home" class="w-7 h-7"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Home & Garden</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Decor, Furniture & Plants</p>
+        </div>
+
+        <!-- Sports & Fitness -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center hover:border-fraction-300 hover:shadow-md transition">
+          <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
+            <i data-lucide="dumbbell" class="w-7 h-7"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Sports & Fitness</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Gyms, Gear & Supplements</p>
+        </div>
+
+        <!-- Services & Jewelry -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col items-center text-center hover:border-fraction-300 hover:shadow-md transition">
+          <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
+            <i data-lucide="wrench" class="w-7 h-7"></i>
+          </div>
+          <h4 class="font-bold text-slate-900 text-sm">Services & Jewelry</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Jewelry, Repair & Auto</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 3. STORES NETWORK (WITH REAL PARTNER DATA) ================= -->
+  <section id="stores" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        <div>
+          <h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider">Stores Directory</h2>
+          <p class="text-3xl font-extrabold text-slate-900 mt-1">Participating Merchants</p>
+          <p class="text-slate-500 mt-2 text-sm max-w-lg">Visit any of our active partner stores in Jordan to scan & earn instant cashback.</p>
+        </div>
+        
+        <a href="#partner-form" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-fraction-50 border border-fraction-300 text-fraction-700 font-bold text-sm hover:bg-fraction-100 transition">
+          <i data-lucide="store" class="w-4 h-4"></i>
+          Become a Partner Store
+        </a>
+      </div>
+
+      <!-- Filter Buttons matching screenshot -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 hide-scrollbar">
+        <button onclick="filterStores('all')" class="store-filter active shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-fraction-600 text-white shadow-sm transition">All</button>
+        <button onclick="filterStores('Restaurants')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Restaurants</button>
+        <button onclick="filterStores('Cafes')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Cafes</button>
+        <button onclick="filterStores('Jewelry')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Jewelry</button>
+        <button onclick="filterStores('Fashion')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Fashion</button>
+        <button onclick="filterStores('Chocolate')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Chocolate & Gifts</button>
+      </div>
+
+      <!-- Real Stores Cards Grid (Exact data from Screenshots) -->
+      <div id="storesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Store 1: Bella Napoli Pizza -->
+        <div class="store-card Restaurants bg-slate-50 rounded-2xl p-5 border border-slate-200 flex items-center justify-between hover:shadow-md transition">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-xl font-bold shadow-xs">
+              🍕
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-base">Bella Napoli Pizza</h4>
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Restaurants</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-base font-extrabold text-fraction-600">10%</span>
+            <div class="text-[10px] text-slate-400">Cashback</div>
+          </div>
+        </div>
+
+        <!-- Store 2: Quality Time -->
+        <div class="store-card Jewelry bg-slate-50 rounded-2xl p-5 border border-slate-200 flex items-center justify-between hover:shadow-md transition">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-slate-900 text-amber-400 flex items-center justify-center text-xl font-bold shadow-xs">
+              ⏳
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-base">Quality Time</h4>
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Jewelry</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-base font-extrabold text-fraction-600">10%</span>
+            <div class="text-[10px] text-slate-400">Cashback</div>
+          </div>
+        </div>
+
+        <!-- Store 3: Eggcited -->
+        <div class="store-card Restaurants Cafes bg-slate-50 rounded-2xl p-5 border border-slate-200 flex items-center justify-between hover:shadow-md transition">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-black text-amber-300 flex items-center justify-center text-xl font-bold shadow-xs">
+              🍳
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-base">Eggcited</h4>
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Restaurants</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-base font-extrabold text-fraction-600">12.5%</span>
+            <div class="text-[10px] text-slate-400">Cashback</div>
+          </div>
+        </div>
+
+        <!-- Store 4: Mohannad Farrah Jewelry -->
+        <div class="store-card Jewelry bg-slate-50 rounded-2xl p-5 border border-slate-200 flex items-center justify-between hover:shadow-md transition">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-slate-950 text-yellow-500 flex items-center justify-center text-xl font-bold shadow-xs">
+              💎
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-base">Mohannad Farrah Jewelry</h4>
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Jewelry</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-base font-extrabold text-fraction-600">7%</span>
+            <div class="text-[10px] text-slate-400">Cashback</div>
+          </div>
+        </div>
+
+        <!-- Store 5: Al Fursan Chocolate & Gift -->
+        <div class="store-card Chocolate bg-slate-50 rounded-2xl p-5 border border-slate-200 flex items-center justify-between hover:shadow-md transition">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-xl font-bold shadow-xs">
+              🍫
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-base">Al Fursan Chocolate</h4>
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Chocolate&Gifts</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-base font-extrabold text-fraction-600">5%</span>
+            <div class="text-[10px] text-slate-400">Cashback</div>
+          </div>
+        </div>
+
+        <!-- Store 6: Nasser Abukhalaf -->
+        <div class="store-card Fashion bg-slate-50 rounded-2xl p-5 border border-slate-200 flex items-center justify-between hover:shadow-md transition">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-blue-900 text-white flex items-center justify-center text-sm font-black shadow-xs">
+              NK
+            </div>
+            <div>
+              <h4 class="font-bold text-slate-900 text-base">Nasser Abukhalaf</h4>
+              <span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Fashion</span>
+            </div>
+          </div>
+          <div class="text-right">
+            <span class="text-base font-extrabold text-fraction-600">5%</span>
+            <div class="text-[10px] text-slate-400">Cashback</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Become a Partner Box -->
+      <div id="partner-form" class="mt-16 bg-gradient-to-br from-fraction-50 to-sky-50 border border-fraction-200 rounded-3xl p-8 lg:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-6 space-y-4">
+            <span class="px-3 py-1 rounded-full bg-white text-fraction-700 font-bold text-xs border border-fraction-200 shadow-xs">
+              Merchant Network
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+              Join Fraction as a Partner Store in Jordan
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Drive direct sales and loyalty without monthly POS rental hardware fees or payment gateway integration delays. Cashiers scan user QR codes or enter User IDs right from any smartphone.
+            </p>
+            <div class="pt-2">
+              <!-- INTEGRATION CTA TO MARKET CALCULATOR -->
+              <a href="market-calculator.html" class="inline-flex items-center gap-2 text-fraction-700 font-bold text-sm hover:underline">
+                <span>View Merchant Insights & ROI Calculator</span>
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <form onsubmit="handlePartnerSubmit(event)" class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input type="text" placeholder="Brand / Store Name" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+                <input type="text" placeholder="Location / City (Amman, Zarqa..)" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input type="tel" placeholder="Jordan Mobile (+962)" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+                <input type="email" placeholder="Business Email" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+              </div>
+              <button type="submit" class="w-full py-3.5 rounded-xl bg-fraction-600 text-white font-bold text-sm shadow-md hover:bg-fraction-700 transition">
+                Submit Partnership Request
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 4. MERCHANT INSIGHTS BANNER ================= -->
+  <section class="py-16 bg-slate-900 text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-8 space-y-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fraction-500/20 text-fraction-300 text-xs font-bold border border-fraction-500/30">
+            <i data-lucide="bar-chart-3" class="w-3.5 h-3.5"></i> Merchant Insights Ready
+          </div>
+          <h2 class="text-3xl font-extrabold tracking-tight">
+            Calculate your store ROI & revenue uplift
+          </h2>
+          <p class="text-slate-300 text-sm max-w-2xl leading-relaxed">
+            Interested in calculating how much revenue and customer retention Fraction can generate for your store? Launch our dedicated Merchant Market Calculator.
+          </p>
+        </div>
+
+        <div class="lg:col-span-4 flex lg:justify-end">
+          <!-- LINK TO market-calculator.html -->
+          <a href="market-calculator.html" class="inline-flex items-center gap-3 px-7 py-4 rounded-2xl bg-fraction-500 hover:bg-fraction-400 text-white font-extrabold text-sm shadow-xl transition duration-300">
+            <span>Open Market Calculator</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5. DOWNLOAD THE APP ================= -->
+  <section id="download" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-tr from-slate-900 via-fraction-900 to-slate-900 rounded-3xl p-8 sm:p-14 text-white text-center relative overflow-hidden">
+        
+        <div class="relative z-10 max-w-2xl mx-auto space-y-6">
+          <div class="w-14 h-14 rounded-2xl bg-fraction-500/20 text-fraction-300 flex items-center justify-center mx-auto border border-fraction-500/30">
+            <i data-lucide="smartphone" class="w-7 h-7"></i>
+          </div>
+          
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            Download Fraction Today
+          </h2>
+          
+          <p class="text-slate-300 text-sm sm:text-base">
+            Start earning cashback with zero cards, zero bank linkages, and instant CliQ cashout.
+          </p>
+
+          <!-- Store Buttons -->
+          <div class="flex flex-wrap justify-center gap-4 pt-4">
+            
+            <a href="#" class="flex items-center gap-3 px-6 py-3 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow">
+              <i data-lucide="apple" class="w-6 h-6"></i>
+              <div class="text-left leading-tight">
+                <span class="block text-[10px] uppercase font-normal text-slate-500">Download on</span>
+                <span class="text-xs font-bold">App Store</span>
+              </div>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-6 py-3 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow">
+              <i data-lucide="play" class="w-6 h-6"></i>
+              <div class="text-left leading-tight">
+                <span class="block text-[10px] uppercase font-normal text-slate-500">GET IT ON</span>
+                <span class="text-xs font-bold">Google Play</span>
+              </div>
+            </a>
+
+            <a href="#" class="flex items-center gap-3 px-6 py-3 bg-slate-800 text-white border border-slate-700 rounded-2xl font-bold hover:bg-slate-700 transition shadow">
+              <i data-lucide="download-cloud" class="w-6 h-6 text-fraction-400"></i>
+              <div class="text-left leading-tight">
+                <span class="block text-[10px] uppercase font-normal text-slate-400">Direct APK</span>
+                <span class="text-xs font-bold">Huawei / Android</span>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6. CONTACT US ================= -->
+  <section id="contact" class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Contact Info -->
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider">Support & Inquiries</h2>
+            <p class="text-3xl font-extrabold text-slate-900 mt-1">Get in Touch</p>
+            <p class="text-slate-500 text-sm mt-2">Questions about CliQ cashouts, store onboarding, or User ID rewards? Our Amman team is here to assist.</p>
+          </div>
+
+          <div class="space-y-4 pt-2">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-fraction-50 text-fraction-600 flex items-center justify-center shrink-0">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Amman Office</h4>
+                <p class="text-slate-500 text-xs">Amman, Jordan</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-fraction-50 text-fraction-600 flex items-center justify-center shrink-0">
+                <i data-lucide="phone-call" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Phone & WhatsApp</h4>
+                <p class="text-slate-500 text-xs">+962 79 994 9262</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-fraction-50 text-fraction-600 flex items-center justify-center shrink-0">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Email Support</h4>
+                <p class="text-slate-500 text-xs">support@fractionjo.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-7">
+          <div class="bg-slate-50 p-8 rounded-3xl border border-slate-200">
+            <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1">Your Name</label>
+                  <input type="text" required placeholder="Ahmad ..." class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1">Phone Number</label>
+                  <input type="tel" required placeholder="+962 7X XXX XXXX" class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Subject</label>
+                <select class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500">
+                  <option>General App Support</option>
+                  <option>CliQ Cashout Help</option>
+                  <option>Merchant Partnership</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Message</label>
+                <textarea rows="4" required placeholder="How can we help you?" class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500"></textarea>
+              </div>
+              <button type="submit" class="w-full py-3.5 rounded-xl bg-fraction-600 text-white font-bold text-sm shadow hover:bg-fraction-700 transition">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-950 text-slate-400 py-10 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-xl bg-fraction-600 flex items-center justify-center text-white font-bold text-xs">
+            %
+          </div>
+          <span class="text-lg font-bold text-white tracking-tight">Fraction<span class="text-fraction-500">.</span></span>
+          <span class="text-xs text-slate-500 border-l border-slate-800 pl-3">Jordan Cardless Cashback</span>
+        </div>
+
+        <div class="flex flex-wrap gap-6 text-xs font-medium">
+          <a href="#home" class="hover:text-white transition">Home</a>
+          <a href="#categories" class="hover:text-white transition">Categories</a>
+          <a href="#stores" class="hover:text-white transition">Stores</a>
+          <a href="market-calculator.html" class="text-fraction-400 hover:text-white transition">Merchant Insights</a>
+          <a href="#contact" class="hover:text-white transition">Contact</a>
+        </div>
+
+        <p class="text-xs text-slate-500">
+          &copy; <span id="year"></span> Fraction Jordan. All rights reserved.
+        </p>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    lucide.createIcons();
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Store Filter Handling
+    function filterStores(category) {
+      const cards = document.querySelectorAll('.store-card');
+      const buttons = document.querySelectorAll('.store-filter');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-fraction-600', 'text-white');
+        btn.classList.add('bg-slate-100', 'text-slate-600');
+      });
+      event.target.classList.add('bg-fraction-600', 'text-white');
+      event.target.classList.remove('bg-slate-100', 'text-slate-600');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    function handlePartnerSubmit(e) {
+      e.preventDefault();
+      alert('Thank you! A Fraction partner representative will reach out to you shortly.');
+      e.target.reset();
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      alert('Thank you! Your message has been sent to our Jordan support team.');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
