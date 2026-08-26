@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fraction | Jordan's Smart Cashback App</title>
+  <meta name="description" content="Earn instant cashback on daily purchases across Jordan. Redeem in-store or cash out directly via CliQ or agents. No bank card required." />
+  
+  <!-- Google Fonts & Tailwind CSS CDN -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              900: '#064e3b',
+              dark: '#0b132b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .hero-gradient {
+      background: radial-gradient(circle at 80% 20%, rgba(16, 185, 129, 0.15) 0%, rgba(255, 255, 255, 0) 60%),
+                  radial-gradient(circle at 10% 80%, rgba(6, 78, 59, 0.08) 0%, rgba(255, 255, 255, 0) 50%);
+    }
+  </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <a href="#home" class="flex items-center gap-2.5 group">
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-brand-700 to-brand-400 flex items-center justify-center text-white shadow-lg shadow-brand-500/25 group-hover:scale-105 transition duration-300">
+            <i data-lucide="percent" class="w-6 h-6 stroke-[2.5]"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-2xl font-extrabold tracking-tight text-slate-900 leading-none">Fraction<span class="text-brand-600">.</span></span>
+            <span class="text-[10px] font-semibold text-slate-400 uppercase tracking-widest mt-1">Cashback Jordan</span>
+          </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <nav class="hidden md:flex items-center gap-8 font-medium text-slate-600 text-sm">
+          <a href="#home" class="hover:text-brand-600 transition">Home</a>
+          <a href="#how-it-works" class="hover:text-brand-600 transition">How it Works</a>
+          <a href="#stores" class="hover:text-brand-600 transition">Partner Stores</a>
+          <!-- Direct integration with market-calculator.html -->
+          <a href="market-calculator.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-brand-50 text-brand-700 font-semibold border border-brand-200 hover:bg-brand-100 transition">
+            <i data-lucide="line-chart" class="w-4 h-4"></i> Merchant Insights
+          </a>
+          <a href="#contact" class="hover:text-brand-600 transition">Contact</a>
+        </nav>
+
+        <!-- CTA Buttons -->
+        <div class="hidden sm:flex items-center gap-3">
+          <a href="#download" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-900 text-white font-semibold text-sm shadow-md hover:bg-brand-600 hover:shadow-brand-500/25 transition duration-300">
+            <i data-lucide="download" class="w-4 h-4"></i>
+            <span>Get App</span>
+          </a>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden border-b border-slate-100 bg-white px-6 py-4 space-y-3">
+      <a href="#home" class="block font-medium text-slate-700 hover:text-brand-600 py-1">Home</a>
+      <a href="#how-it-works" class="block font-medium text-slate-700 hover:text-brand-600 py-1">How it Works</a>
+      <a href="#stores" class="block font-medium text-slate-700 hover:text-brand-600 py-1">Partner Stores</a>
+      <a href="market-calculator.html" class="block font-medium text-brand-700 hover:text-brand-800 py-1 font-semibold">Merchant Insights</a>
+      <a href="#contact" class="block font-medium text-slate-700 hover:text-brand-600 py-1">Contact Us</a>
+      <a href="#download" class="block text-center w-full py-2.5 rounded-xl bg-brand-600 text-white font-semibold mt-2">Download App</a>
+    </div>
+  </header>
+
+  <!-- ================= 1. HERO SECTION ================= -->
+  <section id="home" class="relative pt-32 pb-20 md:pt-40 md:pb-28 hero-gradient overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Hero Text -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100/70 border border-brand-200 text-brand-800 text-xs sm:text-sm font-semibold">
+            <span class="flex h-2 w-2 rounded-full bg-brand-600 animate-ping"></span>
+            🇯🇴 Designed for Jordan • No Bank Account or Card Required
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+            Shop Locally. <br />
+            Earn Real Cashback. <br />
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-emerald-500">Zero Bank Cards Needed.</span>
+          </h1>
+
+          <p class="text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+            Earn rewards instantly at your favorite Jordanian stores with a quick QR scan or your Fraction User ID. Cash out directly via <strong class="text-slate-900">CliQ</strong>, local cash agents, or pay for your next purchase.
+          </p>
+
+          <!-- Key Highlights Badges -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2 text-xs font-semibold text-slate-700">
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 shadow-sm">
+              <i data-lucide="shield-check" class="w-4 h-4 text-brand-600"></i> No Payment Gateways
+            </div>
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 shadow-sm">
+              <i data-lucide="zap" class="w-4 h-4 text-brand-600"></i> Instant QR Scan
+            </div>
+            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 shadow-sm">
+              <i data-lucide="banknote" class="w-4 h-4 text-brand-600"></i> CliQ & Agent Cashout
+            </div>
+          </div>
+
+          <!-- Download Action Area -->
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a href="#download" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-7 py-4 rounded-2xl bg-brand-600 text-white font-bold text-base shadow-xl shadow-brand-600/30 hover:bg-brand-700 hover:scale-[1.02] transition duration-200">
+              <i data-lucide="smartphone" class="w-5 h-5"></i>
+              Start Earning Today
+            </a>
+            <a href="#stores" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl bg-white text-slate-800 border border-slate-200 font-bold text-base shadow-sm hover:bg-slate-50 transition">
+              Explore 120+ Stores
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero App Mockup Visual -->
+        <div class="lg:col-span-5 flex justify-center relative">
+          <!-- Background Glow Elements -->
+          <div class="absolute -top-10 -left-10 w-64 h-64 bg-brand-400/20 rounded-full blur-3xl"></div>
+          <div class="absolute -bottom-10 -right-10 w-64 h-64 bg-emerald-600/20 rounded-full blur-3xl"></div>
+
+          <!-- Phone Card Wrapper -->
+          <div class="relative w-full max-w-[340px] bg-slate-900 p-4 rounded-[42px] shadow-2xl border-4 border-slate-800">
+            <!-- Screen -->
+            <div class="bg-slate-950 rounded-[34px] overflow-hidden text-white p-5 border border-slate-800/80">
+              
+              <!-- App Top Bar -->
+              <div class="flex justify-between items-center mb-6">
+                <div>
+                  <p class="text-[11px] text-slate-400">Welcome Back</p>
+                  <p class="text-sm font-bold">Tareq Al-Khatib</p>
+                </div>
+                <div class="px-2.5 py-1 rounded-full bg-brand-500/20 border border-brand-500/30 text-brand-400 text-xs font-mono font-bold">
+                  ID: #JO-8821
+                </div>
+              </div>
+
+              <!-- Balance Card -->
+              <div class="p-4 rounded-2xl bg-gradient-to-br from-brand-600 to-emerald-700 text-white shadow-lg mb-6 relative overflow-hidden">
+                <div class="absolute right-[-15px] bottom-[-20px] opacity-15">
+                  <i data-lucide="percent" class="w-32 h-32"></i>
+                </div>
+                <span class="text-xs uppercase tracking-wider text-brand-100 font-medium">Available Cashback</span>
+                <div class="text-3xl font-extrabold my-1">38.75 <span class="text-base font-normal">JOD</span></div>
+                <div class="flex items-center gap-2 mt-3 text-[11px] text-brand-100 bg-black/20 rounded-lg p-2 backdrop-blur-sm">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-brand-300"></i>
+                  <span>Ready for CliQ Cashout or In-Store Pay</span>
+                </div>
+              </div>
+
+              <!-- QR Code Simulation -->
+              <div class="bg-white rounded-2xl p-4 text-center text-slate-900 mb-4 shadow-sm">
+                <p class="text-xs font-bold text-slate-500 mb-2">SCAN TO EARN OR REDEEM</p>
+                <div class="w-36 h-36 mx-auto bg-slate-100 rounded-xl p-2 border-2 border-dashed border-slate-300 flex items-center justify-center relative">
+                  <!-- Simulated QR Pattern -->
+                  <div class="grid grid-cols-5 gap-1.5 w-full h-full p-1 opacity-80">
+                    <div class="bg-slate-900 rounded-sm col-span-2 row-span-2"></div>
+                    <div class="bg-slate-900 rounded-sm"></div>
+                    <div class="bg-slate-900 rounded-sm col-span-2 row-span-2"></div>
+                    <div class="bg-slate-900 rounded-sm"></div>
+                    <div class="bg-slate-900 rounded-sm"></div>
+                    <div class="bg-brand-600 rounded-sm"></div>
+                    <div class="bg-slate-900 rounded-sm col-span-2 row-span-2"></div>
+                    <div class="bg-slate-900 rounded-sm"></div>
+                    <div class="bg-slate-900 rounded-sm col-span-2 row-span-2"></div>
+                  </div>
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-9 h-9 rounded-full bg-brand-600 text-white flex items-center justify-center shadow-md font-bold text-xs">
+                      %
+                    </div>
+                  </div>
+                </div>
+                <p class="text-[11px] text-slate-400 font-mono mt-2">ID: 962-7900-4421</p>
+              </div>
+
+              <!-- App Quick Actions -->
+              <div class="grid grid-cols-2 gap-2 text-center text-xs">
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center gap-1.5 text-slate-300">
+                  <i data-lucide="store" class="w-3.5 h-3.5 text-brand-400"></i> Spend Here
+                </div>
+                <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center gap-1.5 text-slate-300">
+                  <i data-lucide="send" class="w-3.5 h-3.5 text-brand-400"></i> CliQ Cashout
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HOW IT WORKS ================= -->
+  <section id="how-it-works" class="py-20 bg-white border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-xs uppercase font-bold text-brand-600 tracking-wider">Simple & Cardless</h2>
+        <p class="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-2">How Fraction Works</p>
+        <p class="text-slate-500 mt-3 text-base">Earn cashback without connecting bank accounts, credit cards, or handling complicated payment gateways.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Step 1 -->
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 relative group hover:border-brand-300 transition duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center mb-6 font-bold text-xl group-hover:scale-110 transition">
+            1
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Shop & Show ID/QR</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Visit any participating merchant across Jordan (Amman, Zarqa, Irbid, etc.). Pay cash or however you prefer, and simply have the cashier scan your Fraction QR or note your User ID.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 relative group hover:border-brand-300 transition duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center mb-6 font-bold text-xl group-hover:scale-110 transition">
+            2
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Instant Cashback</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            A percentage of your bill is instantly credited to your Fraction app wallet in real Jordanian Dinars (JOD). No delays, points tricks, or complex vouchers.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 relative group hover:border-brand-300 transition duration-300">
+          <div class="w-14 h-14 rounded-2xl bg-brand-100 text-brand-700 flex items-center justify-center mb-6 font-bold text-xl group-hover:scale-110 transition">
+            3
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">Redeem in 2 Ways</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Use your accumulated cashback to pay for purchases across our network, or cash out physically to your bank/e-wallet via <span class="font-bold text-slate-800">CliQ</span> or authorized physical cash agents.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Redemption 2-Pillars Showcase -->
+      <div class="mt-14 p-8 rounded-3xl bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div class="border-b md:border-b-0 md:border-r border-slate-700 pb-6 md:pb-0 md:pr-6">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="p-2.5 rounded-xl bg-brand-500/20 text-brand-400">
+                <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+              </div>
+              <h4 class="text-xl font-bold">1. Pay at Partner Stores</h4>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Use your Fraction balance like real money to pay fully or partially for coffee, dining, groceries, fashion, and tech within our partner network.
+            </p>
+          </div>
+          <div class="pt-2 md:pt-0 md:pl-6">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="p-2.5 rounded-xl bg-emerald-500/20 text-emerald-400">
+                <i data-lucide="arrow-up-right" class="w-6 h-6"></i>
+              </div>
+              <h4 class="text-xl font-bold">2. CliQ or Cash Agent Withdrawal</h4>
+            </div>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Want hard cash? Instantly transfer your earnings via <strong>CliQ alias</strong> to any Jordanian bank account, or pick up physical cash at authorized local Fraction agents.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 2. STORES PAGE / DIRECTORY ================= -->
+  <section id="stores" class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+        <div>
+          <h2 class="text-xs uppercase font-bold text-brand-600 tracking-wider">Stores Network</h2>
+          <p class="text-3xl font-extrabold text-slate-900 mt-1">Explore Participating Stores</p>
+          <p class="text-slate-500 mt-2 text-sm max-w-lg">Discover top spots in Jordan where you can earn and spend your cashback balance today.</p>
+        </div>
+        
+        <!-- Become Partner Trigger -->
+        <a href="#partner-form" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white border border-brand-500 text-brand-700 font-bold text-sm shadow-sm hover:bg-brand-50 transition">
+          <i data-lucide="store" class="w-4 h-4"></i>
+          Become a Partner Store
+        </a>
+      </div>
+
+      <!-- Categories Filter (Interactive) -->
+      <div class="flex flex-wrap gap-2 mb-8">
+        <button onclick="filterStores('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs font-bold bg-brand-600 text-white shadow-sm transition">All Stores</button>
+        <button onclick="filterStores('cafes')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Cafes & Restaurants</button>
+        <button onclick="filterStores('fashion')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Fashion & Apparel</button>
+        <button onclick="filterStores('tech')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Electronics & Tech</button>
+        <button onclick="filterStores('supermarkets')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 transition">Supermarkets</button>
+      </div>
+
+      <!-- Stores Grid -->
+      <div id="storesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Store Card 1 -->
+        <div class="store-item cafes bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-lg">
+              ☕
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-bold text-xs">Up to 15% Back</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base">Amman Roastery & Cafe</h4>
+          <p class="text-slate-500 text-xs mt-1"><i data-lucide="map-pin" class="w-3 h-3 inline"></i> Abdoun & 7th Circle, Amman</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+            <span>QR Scan & ID Accepted</span>
+            <span class="text-brand-600 font-semibold">Active</span>
+          </div>
+        </div>
+
+        <!-- Store Card 2 -->
+        <div class="store-item fashion bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-lg">
+              👕
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-bold text-xs">Up to 10% Back</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base">Urban Threads Jordan</h4>
+          <p class="text-slate-500 text-xs mt-1"><i data-lucide="map-pin" class="w-3 h-3 inline"></i> Sweifieh Village, Amman</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+            <span>QR Scan & ID Accepted</span>
+            <span class="text-brand-600 font-semibold">Active</span>
+          </div>
+        </div>
+
+        <!-- Store Card 3 -->
+        <div class="store-item tech bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-lg">
+              ⚡
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-bold text-xs">Up to 8% Back</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base">Matrix Gadgets & Mobile</h4>
+          <p class="text-slate-500 text-xs mt-1"><i data-lucide="map-pin" class="w-3 h-3 inline"></i> Gardens St, Amman</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+            <span>QR Scan & ID Accepted</span>
+            <span class="text-brand-600 font-semibold">Active</span>
+          </div>
+        </div>
+
+        <!-- Store Card 4 -->
+        <div class="store-item supermarkets bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 rounded-xl bg-green-50 text-green-600 flex items-center justify-center font-bold text-lg">
+              🛒
+            </div>
+            <span class="px-2.5 py-1 rounded-full bg-brand-50 text-brand-700 font-bold text-xs">Up to 5% Back</span>
+          </div>
+          <h4 class="font-bold text-slate-900 text-base">Al-Basha Gourmet Market</h4>
+          <p class="text-slate-500 text-xs mt-1"><i data-lucide="map-pin" class="w-3 h-3 inline"></i> Dabouq, Amman & Zarqa</p>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+            <span>QR Scan & ID Accepted</span>
+            <span class="text-brand-600 font-semibold">Active</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Become a Partner Callout Box -->
+      <div id="partner-form" class="mt-16 bg-white border border-slate-200 rounded-3xl p-8 lg:p-12 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6 space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-bold">
+              Merchant Network
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Are you a merchant in Jordan?</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Attract high-intent customers, boost repeat visits, and join our cardless cashback revolution without any expensive POS equipment or transaction fee surprises.
+            </p>
+            <div class="flex flex-wrap gap-4 text-xs font-medium text-slate-600">
+              <span class="flex items-center gap-1"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i> No setup fee</span>
+              <span class="flex items-center gap-1"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i> Easy cashier scanner</span>
+              <span class="flex items-center gap-1"><i data-lucide="check" class="w-4 h-4 text-brand-600"></i> Real-time insights</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6">
+            <form onsubmit="handlePartnerSubmit(event)" class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-3">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input type="text" placeholder="Business Name" required class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500" />
+                <input type="text" placeholder="City / Branch Area" required class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500" />
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <input type="tel" placeholder="Jordan Phone (+962)" required class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500" />
+                <input type="email" placeholder="Business Email" required class="w-full px-4 py-2.5 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-brand-500" />
+              </div>
+              <button type="submit" class="w-full py-3 rounded-xl bg-brand-600 text-white font-bold text-sm shadow hover:bg-brand-700 transition">
+                Submit Partner Request
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 3. MERCHANT INSIGHTS (INTEGRATION BANNER) ================= -->
+  <section class="py-16 bg-gradient-to-b from-slate-900 via-brand-dark to-slate-900 text-white relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-8 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 text-xs font-semibold border border-brand-500/30">
+            <i data-lucide="bar-chart-2" class="w-3.5 h-3.5"></i> Dedicated Business Analytics
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+            Calculate your store ROI & revenue uplift
+          </h2>
+          <p class="text-slate-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+            Interested in calculating how much revenue Fraction can generate for your store? Access our comprehensive interactive Merchant Market Calculator.
+          </p>
+        </div>
+
+        <div class="lg:col-span-4 flex lg:justify-end">
+          <!-- INTEGRATION LINK TO YOUR FILE: market-calculator.html -->
+          <a href="market-calculator.html" class="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-brand-500 hover:bg-brand-400 text-slate-950 font-extrabold text-base shadow-xl shadow-brand-500/25 transition duration-300">
+            <span>Open Market Calculator</span>
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 4. DOWNLOAD APP SECTION ================= -->
+  <section id="download" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-tr from-slate-900 to-slate-800 rounded-3xl p-8 sm:p-14 text-white text-center relative overflow-hidden">
+        
+        <div class="relative z-10 max-w-2xl mx-auto space-y-6">
+          <div class="w-16 h-16 rounded-2xl bg-brand-500/20 text-brand-400 flex items-center justify-center mx-auto mb-2 border border-brand-500/30">
+            <i data-lucide="sparkles" class="w-8 h-8"></i>
+          </div>
+          
+          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+            Start Earning Fraction Cashback in Jordan
+          </h2>
+          
+          <p class="text-slate-300 text-base">
+            No bank cards, no minimum sign-up friction. Download the app, register with your phone number, and begin earning on your next visit.
+          </p>
+
+          <!-- Store Buttons -->
+          <div class="flex flex-wrap justify-center gap-4 pt-4">
+            
+            <!-- Apple App Store -->
+            <a href="#" class="flex items-center gap-3 px-6 py-3.5 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow-md">
+              <i data-lucide="apple" class="w-6 h-6"></i>
+              <div class="text-left leading-tight">
+                <span class="block text-[10px] uppercase font-normal text-slate-500">Download on the</span>
+                <span class="text-sm">App Store</span>
+              </div>
+            </a>
+
+            <!-- Google Play Store -->
+            <a href="#" class="flex items-center gap-3 px-6 py-3.5 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow-md">
+              <i data-lucide="play" class="w-6 h-6"></i>
+              <div class="text-left leading-tight">
+                <span class="block text-[10px] uppercase font-normal text-slate-500">GET IT ON</span>
+                <span class="text-sm">Google Play</span>
+              </div>
+            </a>
+
+            <!-- Direct APK / Huawei AppGallery -->
+            <a href="#" class="flex items-center gap-3 px-6 py-3.5 bg-slate-800 text-white border border-slate-700 rounded-2xl font-bold hover:bg-slate-700 transition shadow-md">
+              <i data-lucide="download-cloud" class="w-6 h-6 text-brand-400"></i>
+              <div class="text-left leading-tight">
+                <span class="block text-[10px] uppercase font-normal text-slate-400">Direct Download</span>
+                <span class="text-sm">Huawei / APK</span>
+              </div>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5. CONTACT US ================= -->
+  <section id="contact" class="py-20 bg-slate-50 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Contact Info -->
+        <div class="lg:col-span-5 space-y-6">
+          <div>
+            <h2 class="text-xs uppercase font-bold text-brand-600 tracking-wider">Get in Touch</h2>
+            <p class="text-3xl font-extrabold text-slate-900 mt-1">We're Here in Jordan</p>
+            <p class="text-slate-500 text-sm mt-2">Have a question regarding CliQ cashouts, user ID rewards, or partnering your business? Contact our Amman support team.</p>
+          </div>
+
+          <div class="space-y-4 pt-2">
+            
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center shrink-0">
+                <i data-lucide="map-pin" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Amman Headquarters</h4>
+                <p class="text-slate-500 text-xs">King Hussein Business Park (KHBP), King Abdullah II St, Amman, Jordan</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center shrink-0">
+                <i data-lucide="phone-call" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Phone & WhatsApp Support</h4>
+                <p class="text-slate-500 text-xs">+962 6 500 0000 / +962 79 000 0000</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center shrink-0">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">Email Support</h4>
+                <p class="text-slate-500 text-xs">support@fractionjo.com | partners@fractionjo.com</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-brand-100 text-brand-700 flex items-center justify-center shrink-0">
+                <i data-lucide="clock" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-sm">CliQ Support Hours</h4>
+                <p class="text-slate-500 text-xs">Sunday - Thursday: 9:00 AM – 8:00 PM</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="lg:col-span-7">
+          <div class="bg-white p-8 sm:p-10 rounded-3xl border border-slate-200 shadow-sm">
+            <h3 class="text-xl font-bold text-slate-900 mb-6">Send us a message</h3>
+            <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1">Full Name</label>
+                  <input type="text" required placeholder="e.g. Ahmad Majali" class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-700 mb-1">Phone Number</label>
+                  <input type="tel" required placeholder="+962 7X XXX XXXX" class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500" />
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Subject</label>
+                <select class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                  <option>Customer Inquiry / App Support</option>
+                  <option>Store Partnership / Merchant Query</option>
+                  <option>CliQ & Agent Cashout Help</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Message</label>
+                <textarea rows="4" required placeholder="How can we assist you?" class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+              </div>
+              <button type="submit" class="w-full py-3.5 rounded-xl bg-slate-900 text-white font-bold text-sm shadow hover:bg-brand-600 transition">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center text-white font-bold">
+            <i data-lucide="percent" class="w-5 h-5"></i>
+          </div>
+          <span class="text-xl font-bold text-white tracking-tight">Fraction<span class="text-brand-500">.</span></span>
+          <span class="text-xs text-slate-500 border-l border-slate-800 pl-3">The Jordan Cardless Cashback App</span>
+        </div>
+
+        <div class="flex flex-wrap gap-6 text-xs">
+          <a href="#home" class="hover:text-white transition">Home</a>
+          <a href="#stores" class="hover:text-white transition">Stores</a>
+          <a href="market-calculator.html" class="text-brand-400 hover:text-white transition">Merchant Insights</a>
+          <a href="#contact" class="hover:text-white transition">Contact</a>
+          <a href="#" class="hover:text-white transition">Privacy Policy</a>
+          <a href="#" class="hover:text-white transition">Terms of Service</a>
+        </div>
+
+        <p class="text-xs text-slate-500">
+          &copy; <span id="year"></span> Fraction Jordan. All rights reserved.
+        </p>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= JS SCRIPTS ================= -->
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Set Dynamic Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Store Filter Functionality
+    function filterStores(category) {
+      const items = document.querySelectorAll('.store-item');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-brand-600', 'text-white');
+        btn.classList.add('bg-white', 'text-slate-600');
+      });
+      event.target.classList.add('bg-brand-600', 'text-white');
+      event.target.classList.remove('bg-white', 'text-slate-600');
+
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // Forms handling
+    function handlePartnerSubmit(e) {
+      e.preventDefault();
+      alert('Thank you for your interest! A Fraction partner representative will reach out to you within 24 hours.');
+      e.target.reset();
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      alert('Thank you! Your message has been sent to our Jordan support team.');
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>
