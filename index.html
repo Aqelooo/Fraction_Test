@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" dir="ltr" class="scroll-smooth">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Fraction | Jordan's Smart Cardless Cashback App</title>
 <meta name="description" content="Earn real cashback at top stores across Jordan. Redeem in-store or cash out directly via CliQ or agents. No bank card or account required." />
 
-<!-- Google Fonts: Plus Jakarta Sans -->
+<!-- Google Fonts: Plus Jakarta Sans & Cairo for Arabic -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -22,7 +22,8 @@ tailwind.config = {
 theme: {
 extend: {
 fontFamily: {
-sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+sans: ['"Plus Jakarta Sans"', 'Cairo', 'sans-serif'],
+cairo: ['Cairo', 'sans-serif'],
 },
 colors: {
 fraction: {
@@ -42,6 +43,9 @@ card: '#f8fafc',
 }
 </script>
 <style>
+html[dir="rtl"] body {
+  font-family: 'Cairo', 'Plus Jakarta Sans', sans-serif;
+}
 .hero-mesh {
 background: radial-gradient(circle at 90% 15%, rgba(37, 99, 235, 0.12) 0%, rgba(255, 255, 255, 0) 50%),
 radial-gradient(circle at 10% 85%, rgba(2, 132, 199, 0.08) 0%, rgba(255, 255, 255, 0) 50%),
@@ -72,44 +76,58 @@ scrollbar-width: none;
 </a>
 
 <!-- Desktop Menu -->
-<nav class="hidden md:flex items-center gap-7 font-semibold text-slate-600 text-sm">
-<a href="#home" class="hover:text-fraction-600 transition">Home</a>
-<a href="#how-it-works" class="hover:text-fraction-600 transition">How it Works</a>
-<a href="#categories" class="hover:text-fraction-600 transition">Categories</a>
-<a href="#stores" class="hover:text-fraction-600 transition">Network Stores</a>
+<nav class="hidden lg:flex items-center gap-6 font-semibold text-slate-600 text-sm">
+<a href="#home" class="hover:text-fraction-600 transition" data-i18n="nav-home">Home</a>
+<a href="#how-it-works" class="hover:text-fraction-600 transition" data-i18n="nav-how">How it Works</a>
+<a href="#calculator" class="hover:text-fraction-600 transition text-fraction-600 font-bold" data-i18n="nav-calc">Forecaster</a>
+<a href="#categories" class="hover:text-fraction-600 transition" data-i18n="nav-categories">Categories</a>
+<a href="#stores" class="hover:text-fraction-600 transition" data-i18n="nav-stores">Network Stores</a>
 
 <!-- Direct integration with market-calculator.html -->
 <a href="market-calculator.html" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-fraction-50 text-fraction-600 border border-fraction-200 hover:bg-fraction-100 transition">
 <i data-lucide="line-chart" class="w-4 h-4"></i>
-<span>Merchant Insights</span>
+<span data-i18n="nav-merchant-insights">Merchant Insights</span>
 </a>
-<a href="#contact" class="hover:text-fraction-600 transition">Contact</a>
+<a href="#contact" class="hover:text-fraction-600 transition" data-i18n="nav-contact">Contact</a>
 </nav>
 
-<!-- CTA Buttons -->
+<!-- CTA Buttons & Language Switcher -->
 <div class="hidden sm:flex items-center gap-3">
+<!-- Language Switcher Button -->
+<button id="langToggleBtn" class="flex items-center gap-2 px-3.5 py-2 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 font-bold text-xs transition">
+  <i data-lucide="globe" class="w-4 h-4 text-fraction-600"></i>
+  <span id="langLabel">العربية</span>
+</button>
+
 <a href="#download" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-fraction-600 text-white font-bold text-sm shadow-md shadow-fraction-600/20 hover:bg-fraction-700 transition">
 <i data-lucide="download" class="w-4 h-4"></i>
-<span>Get App</span>
+<span data-i18n="nav-btn-app">Get App</span>
 </a>
 </div>
 
-<!-- Mobile Menu Toggle -->
-<button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100">
-<i data-lucide="menu" class="w-6 h-6"></i>
-</button>
+<!-- Mobile Menu Toggle & Mobile Lang Switcher -->
+<div class="flex items-center gap-2 lg:hidden">
+  <button id="mobileLangToggleBtn" class="px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 bg-slate-50">
+    <span id="mobileLangLabel">العربية</span>
+  </button>
+  <button id="mobileMenuBtn" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100">
+    <i data-lucide="menu" class="w-6 h-6"></i>
+  </button>
+</div>
+
 </div>
 </div>
 
 <!-- Mobile Dropdown -->
-<div id="mobileMenu" class="hidden md:hidden border-b border-slate-100 bg-white px-6 py-5 space-y-3 shadow-lg">
-<a href="#home" class="block font-semibold text-slate-700 hover:text-fraction-600">Home</a>
-<a href="#how-it-works" class="block font-semibold text-slate-700 hover:text-fraction-600">How it Works</a>
-<a href="#categories" class="block font-semibold text-slate-700 hover:text-fraction-600">Categories</a>
-<a href="#stores" class="block font-semibold text-slate-700 hover:text-fraction-600">Network Stores</a>
-<a href="market-calculator.html" class="block font-bold text-fraction-600 hover:text-fraction-700">Merchant Insights</a>
-<a href="#contact" class="block font-semibold text-slate-700 hover:text-fraction-600">Contact Us</a>
-<a href="#download" class="block text-center w-full py-3 rounded-xl bg-fraction-600 text-white font-bold mt-2">Download Fraction</a>
+<div id="mobileMenu" class="hidden lg:hidden border-b border-slate-100 bg-white px-6 py-5 space-y-3 shadow-lg">
+<a href="#home" class="block font-semibold text-slate-700 hover:text-fraction-600" data-i18n="nav-home">Home</a>
+<a href="#how-it-works" class="block font-semibold text-slate-700 hover:text-fraction-600" data-i18n="nav-how">How it Works</a>
+<a href="#calculator" class="block font-bold text-fraction-600" data-i18n="nav-calc">Forecaster</a>
+<a href="#categories" class="block font-semibold text-slate-700 hover:text-fraction-600" data-i18n="nav-categories">Categories</a>
+<a href="#stores" class="block font-semibold text-slate-700 hover:text-fraction-600" data-i18n="nav-stores">Network Stores</a>
+<a href="market-calculator.html" class="block font-bold text-fraction-600 hover:text-fraction-700" data-i18n="nav-merchant-insights">Merchant Insights</a>
+<a href="#contact" class="block font-semibold text-slate-700 hover:text-fraction-600" data-i18n="nav-contact">Contact Us</a>
+<a href="#download" class="block text-center w-full py-3 rounded-xl bg-fraction-600 text-white font-bold mt-2" data-i18n="nav-btn-app">Download Fraction</a>
 </div>
 </header>
 
@@ -119,52 +137,52 @@ scrollbar-width: none;
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
 <!-- Left Text -->
-<div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+<div class="lg:col-span-7 space-y-6 text-center lg:text-left rtl:lg:text-right">
 
 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-fraction-100 text-fraction-700 text-xs font-bold border border-fraction-200">
 <span class="flex h-2 w-2 rounded-full bg-fraction-600 animate-ping"></span>
-🇯🇴 Jordan's #1 Cardless Cashback App
+<span data-i18n="hero-badge">🇯🇴 Jordan's #1 Cardless Cashback App</span>
 </div>
 
 <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-Shop in Jordan. <br />
-Earn Instant Cashback. <br />
-<span class="text-transparent bg-clip-text bg-gradient-to-r from-fraction-600 to-sky-500">No Bank Cards Needed.</span>
+<span data-i18n="hero-title-1">Shop in Jordan.</span> <br />
+<span data-i18n="hero-title-2">Earn Instant Cashback.</span> <br />
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-fraction-600 to-sky-500" data-i18n="hero-title-3">No Bank Cards Needed.</span>
 </h1>
 
-<p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed">
+<p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 font-normal leading-relaxed" data-i18n="hero-desc">
 Earn real Jordanian Dinars (<strong class="text-slate-900">JD</strong>) at your favorite stores by simply letting the cashier scan your QR code or enter your User ID. Cash out via <strong class="text-slate-900">CliQ</strong>, local cash agents, or pay for your next purchase.
 </p>
 
 <!-- Feature badges matching screenshot mechanics -->
 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-<div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3">
-<div class="w-9 h-9 rounded-xl bg-fraction-50 text-fraction-600 flex items-center justify-center font-bold">
+<div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3 text-left rtl:text-right">
+<div class="w-9 h-9 rounded-xl bg-fraction-50 text-fraction-600 flex items-center justify-center font-bold shrink-0">
 <i data-lucide="qr-code" class="w-5 h-5"></i>
 </div>
-<div class="text-left">
-<div class="text-xs font-bold text-slate-900">Scan & Earn</div>
-<div class="text-[11px] text-slate-500">QR or User ID</div>
+<div>
+<div class="text-xs font-bold text-slate-900" data-i18n="feature-scan-title">Scan & Earn</div>
+<div class="text-[11px] text-slate-500" data-i18n="feature-scan-sub">QR or User ID</div>
 </div>
 </div>
 
-<div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3">
-<div class="w-9 h-9 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold">
+<div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3 text-left rtl:text-right">
+<div class="w-9 h-9 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center font-bold shrink-0">
 <i data-lucide="arrow-right-left" class="w-5 h-5"></i>
 </div>
-<div class="text-left">
-<div class="text-xs font-bold text-slate-900">CliQ Cashout</div>
-<div class="text-[11px] text-slate-500">Instant to any bank</div>
+<div>
+<div class="text-xs font-bold text-slate-900" data-i18n="feature-cliq-title">CliQ Cashout</div>
+<div class="text-[11px] text-slate-500" data-i18n="feature-cliq-sub">Instant to any bank</div>
 </div>
 </div>
 
-<div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3">
-<div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+<div class="bg-white p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-3 text-left rtl:text-right">
+<div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold shrink-0">
 <i data-lucide="wallet" class="w-5 h-5"></i>
 </div>
-<div class="text-left">
-<div class="text-xs font-bold text-slate-900">Spend Balance</div>
-<div class="text-[11px] text-slate-500">In-store wallet pay</div>
+<div>
+<div class="text-xs font-bold text-slate-900" data-i18n="feature-spend-title">Spend Balance</div>
+<div class="text-[11px] text-slate-500" data-i18n="feature-spend-sub">In-store wallet pay</div>
 </div>
 </div>
 </div>
@@ -173,48 +191,165 @@ Earn real Jordanian Dinars (<strong class="text-slate-900">JD</strong>) at your 
 <div class="pt-3 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
 <a href="#download" class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-fraction-600 text-white font-bold text-base shadow-xl shadow-fraction-600/30 hover:bg-fraction-700 transition">
 <i data-lucide="download" class="w-5 h-5"></i>
-Download Fraction
+<span data-i18n="btn-download-hero">Download Fraction</span>
 </a>
-<a href="#stores" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white text-slate-800 border border-slate-200 font-bold text-base shadow-sm hover:bg-slate-50 transition">
-Browse Stores
+<a href="#calculator" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white text-slate-800 border border-slate-200 font-bold text-base shadow-sm hover:bg-slate-50 transition">
+<i data-lucide="calculator" class="w-5 h-5 text-fraction-600"></i>
+<span data-i18n="btn-calc-hero">Forecast Cashback</span>
 </a>
 </div>
 </div>
 
-<!-- Right: Pixel-Perfect App Screen Reproduction (From Screenshot 3 & 1) -->
+<!-- Right: App Screen Reproduction -->
 <div class="lg:col-span-5 flex justify-center relative">
-
-
-
-
-<!-- App Header Mockup -->
-
 <img src="./images/appmain.jpg"
      alt="App preview"
      class="w-full max-w-[280px] rounded-[40px] border border-slate-200/80 shadow-xl">
-
-</div>
-
-</div>
-</div>
-
-
-
-
 </div>
 
 </div>
 </div>
 </section>
 
+<!-- ================= NEW: USER CASHBACK FORECASTER CALCULATOR ================= -->
+<section id="calculator" class="py-20 bg-gradient-to-b from-[#f8fbff] to-white border-y border-slate-100">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+<div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+  <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-fraction-100 text-fraction-700 text-xs font-bold">
+    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+    <span data-i18n="calc-badge">Personal Earnings Forecaster</span>
+  </div>
+  <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight" data-i18n="calc-title">
+    How Much Will You Earn Back?
+  </h2>
+  <p class="text-slate-500 text-sm sm:text-base leading-relaxed" data-i18n="calc-subtitle">
+    Adjust your typical monthly spending in Jordan to estimate your direct cashback returns.
+  </p>
+</div>
+
+<div class="max-w-4xl mx-auto bg-white rounded-3xl border border-slate-200/90 shadow-xl p-6 sm:p-10">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+    
+    <!-- Sliders Area (7 Cols) -->
+    <div class="lg:col-span-7 space-y-7 text-left rtl:text-right">
+      
+      <!-- Slider 1: Dining & Cafes -->
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center font-bold text-sm">☕</div>
+            <span class="text-xs sm:text-sm font-bold text-slate-800" data-i18n="calc-slider1-label">Cafes & Restaurants (Monthly)</span>
+          </div>
+          <span class="text-sm font-extrabold text-fraction-600"><span id="valDining">120</span> JD</span>
+        </div>
+        <input type="range" id="sliderDining" min="10" max="600" step="10" value="120" class="w-full h-2.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-fraction-600" />
+        <div class="flex justify-between text-[10px] text-slate-400 font-medium mt-1">
+          <span>10 JD</span>
+          <span data-i18n="calc-slider-rate1">Avg. 10% Cashback</span>
+          <span>600 JD</span>
+        </div>
+      </div>
+
+      <!-- Slider 2: Groceries & Supermarkets -->
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-sm">🛒</div>
+            <span class="text-xs sm:text-sm font-bold text-slate-800" data-i18n="calc-slider2-label">Groceries & Everyday Marts</span>
+          </div>
+          <span class="text-sm font-extrabold text-fraction-600"><span id="valGroceries">250</span> JD</span>
+        </div>
+        <input type="range" id="sliderGroceries" min="50" max="1200" step="25" value="250" class="w-full h-2.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-fraction-600" />
+        <div class="flex justify-between text-[10px] text-slate-400 font-medium mt-1">
+          <span>50 JD</span>
+          <span data-i18n="calc-slider-rate2">Avg. 6% Cashback</span>
+          <span>1,200 JD</span>
+        </div>
+      </div>
+
+      <!-- Slider 3: Fashion, Tech, Jewelry -->
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center font-bold text-sm">🛍️</div>
+            <span class="text-xs sm:text-sm font-bold text-slate-800" data-i18n="calc-slider3-label">Fashion, Tech & Jewelry</span>
+          </div>
+          <span class="text-sm font-extrabold text-fraction-600"><span id="valShopping">100</span> JD</span>
+        </div>
+        <input type="range" id="sliderShopping" min="0" max="800" step="25" value="100" class="w-full h-2.5 bg-slate-100 rounded-lg appearance-none cursor-pointer accent-fraction-600" />
+        <div class="flex justify-between text-[10px] text-slate-400 font-medium mt-1">
+          <span>0 JD</span>
+          <span data-i18n="calc-slider-rate3">Avg. 8% Cashback</span>
+          <span>800 JD</span>
+        </div>
+      </div>
+
+      <!-- Total Monthly Spend Summary -->
+      <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-between text-xs">
+        <span class="text-slate-600 font-medium" data-i18n="calc-total-spend">Total Estimated Monthly Spend:</span>
+        <span class="font-bold text-slate-900"><span id="totalMonthlySpend">470</span> JD / mo</span>
+      </div>
+
+    </div>
+
+    <!-- Forecast Result Display (5 Cols) -->
+    <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 via-fraction-900 to-slate-950 rounded-2xl p-6 text-white text-center flex flex-col justify-between shadow-lg">
+      
+      <div class="space-y-4">
+        <span class="inline-block px-3 py-1 rounded-full bg-white/10 text-fraction-200 text-xs font-semibold" data-i18n="calc-forecast-badge">
+          Your Cashback Forecast
+        </span>
+
+        <!-- Annual Total -->
+        <div class="pt-2">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold" data-i18n="calc-annual-title">
+            Yearly Rewards Total
+          </div>
+          <div class="text-4xl sm:text-5xl font-black text-emerald-400 mt-1 tracking-tight">
+            <span id="resAnnual">420</span> <span class="text-xl font-bold text-white">JD</span>
+          </div>
+        </div>
+
+        <!-- Monthly Breakdown -->
+        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-white/10 text-left rtl:text-right">
+          <div class="bg-white/5 p-2.5 rounded-xl">
+            <div class="text-[10px] text-slate-400" data-i18n="calc-monthly-box">Monthly Return</div>
+            <div class="text-sm font-bold text-white mt-0.5"><span id="resMonthly">35.00</span> JD</div>
+          </div>
+          <div class="bg-white/5 p-2.5 rounded-xl">
+            <div class="text-[10px] text-slate-400" data-i18n="calc-payout-box">Payout Channel</div>
+            <div class="text-sm font-bold text-emerald-300 mt-0.5">CliQ / Cash</div>
+          </div>
+        </div>
+
+        <!-- Impact Perk / Context -->
+        <p class="text-xs text-slate-300 bg-white/5 p-3 rounded-xl leading-relaxed">
+          💡 <span data-i18n="calc-perk-text">This pays for over <strong>140 free specialty coffees</strong> or covers multiple grocery runs across Amman each year!</span>
+        </p>
+      </div>
+
+      <a href="#download" class="mt-6 w-full py-3.5 rounded-xl bg-fraction-500 hover:bg-fraction-400 text-white font-extrabold text-sm transition shadow-lg flex items-center justify-center gap-2">
+        <i data-lucide="arrow-down-circle" class="w-4 h-4"></i>
+        <span data-i18n="calc-btn-start">Start Earning This Cash</span>
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+</div>
+</section>
+
 <!-- ================= APP SCREENSHOTS GALLERY / SHOWCASE ================= -->
-<section class="py-16 bg-white border-b border-slate-100">
+<section id="how-it-works" class="py-16 bg-white border-b border-slate-100">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
 <div class="text-center max-w-xl mx-auto mb-12">
-<h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider">Inside Fraction</h2>
-<p class="text-3xl font-extrabold text-slate-900 mt-1">Simple, Fast & Transparent</p>
-<p class="text-slate-500 text-sm mt-2">Check out real screenshots from the Fraction mobile app.</p>
+<h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider" data-i18n="inside-tag">Inside Fraction</h2>
+<p class="text-3xl font-extrabold text-slate-900 mt-1" data-i18n="inside-title">Simple, Fast & Transparent</p>
+<p class="text-slate-500 text-sm mt-2" data-i18n="inside-desc">Check out real screenshots from the Fraction mobile app.</p>
 </div>
 
 <!-- Real Screenshots Showcase Grid -->
@@ -223,74 +358,73 @@ Browse Stores
 <!-- Screen 1: Top Stores & Categories -->
 <div class="bg-slate-50 rounded-3xl p-3 border border-slate-200/80 shadow-sm text-center">
 <div class="bg-slate-100 rounded-2xl aspect-[9/19] overflow-hidden flex flex-col justify-center items-center relative group">
-<!-- If you upload images to images/screen-categories.png it replaces here -->
 <img src="images/imagesscreen-categories.jpg" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover" alt="Categories Screen" />
-<div class="p-4 text-left hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
+<div class="p-4 text-left rtl:text-right hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
 <div>
-<span class="text-[11px] font-bold text-slate-400">Categories</span>
-<p class="text-xs font-bold text-slate-800 mt-1">Restaurants, Cafes, Fashion, Tech & 6+ more</p>
+<span class="text-[11px] font-bold text-slate-400" data-i18n="screen1-cat">Categories</span>
+<p class="text-xs font-bold text-slate-800 mt-1" data-i18n="screen1-desc">Restaurants, Cafes, Fashion, Tech & 6+ more</p>
 </div>
-<div class="p-2.5 bg-white rounded-xl text-center shadow-xs text-xs font-bold text-fraction-600">
+<div class="p-2.5 bg-white rounded-xl text-center shadow-xs text-xs font-bold text-fraction-600" data-i18n="screen1-badge">
 9+ Categories
 </div>
 </div>
 </div>
-<p class="text-xs font-bold text-slate-800 mt-3">Explore Categories</p>
-<p class="text-[11px] text-slate-500">Everyday retail in Jordan</p>
+<p class="text-xs font-bold text-slate-800 mt-3" data-i18n="screen1-label">Explore Categories</p>
+<p class="text-[11px] text-slate-500" data-i18n="screen1-sub">Everyday retail in Jordan</p>
 </div>
 
 <!-- Screen 2: Network Store Directory -->
 <div class="bg-slate-50 rounded-3xl p-3 border border-slate-200/80 shadow-sm text-center">
 <div class="bg-slate-100 rounded-2xl aspect-[9/19] overflow-hidden flex flex-col justify-center items-center relative group">
 <img src="images/imagesscreen-network.jpg" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover" alt="Network Screen" />
-<div class="p-4 text-left hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
+<div class="p-4 text-left rtl:text-right hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
 <div>
-<span class="text-[11px] font-bold text-slate-400">Network</span>
-<p class="text-xs font-bold text-slate-800 mt-1">Live Store Directory with Search & Filters</p>
+<span class="text-[11px] font-bold text-slate-400" data-i18n="screen2-cat">Network</span>
+<p class="text-xs font-bold text-slate-800 mt-1" data-i18n="screen2-desc">Live Store Directory with Search & Filters</p>
 </div>
-<div class="p-2.5 bg-white rounded-xl text-center shadow-xs text-xs font-bold text-fraction-600">
+<div class="p-2.5 bg-white rounded-xl text-center shadow-xs text-xs font-bold text-fraction-600" data-i18n="screen2-badge">
 Search & Filter
 </div>
 </div>
 </div>
-<p class="text-xs font-bold text-slate-800 mt-3">Store Network</p>
-<p class="text-[11px] text-slate-500">Sorted by highest cashback %</p>
+<p class="text-xs font-bold text-slate-800 mt-3" data-i18n="screen2-label">Store Network</p>
+<p class="text-[11px] text-slate-500" data-i18n="screen2-sub">Sorted by highest cashback %</p>
 </div>
 
 <!-- Screen 3: Transactions History -->
 <div class="bg-slate-50 rounded-3xl p-3 border border-slate-200/80 shadow-sm text-center">
 <div class="bg-slate-100 rounded-2xl aspect-[9/19] overflow-hidden flex flex-col justify-center items-center relative group">
 <img src="images/imagesscreen-transactions.jpg" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover" alt="Transactions Screen" />
-<div class="p-4 text-left hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
+<div class="p-4 text-left rtl:text-right hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
 <div>
-<span class="text-[11px] font-bold text-slate-400">Transactions</span>
-<p class="text-xs font-bold text-slate-800 mt-1">Real-time breakdown of Earned JOD</p>
+<span class="text-[11px] font-bold text-slate-400" data-i18n="screen3-cat">Transactions</span>
+<p class="text-xs font-bold text-slate-800 mt-1" data-i18n="screen3-desc">Real-time breakdown of Earned JOD</p>
 </div>
 <div class="p-2.5 bg-white rounded-xl text-center shadow-xs text-xs font-bold text-emerald-600">
 +JD 2.000 Earned
 </div>
 </div>
 </div>
-<p class="text-xs font-bold text-slate-800 mt-3">Transaction History</p>
-<p class="text-[11px] text-slate-500">Earned, Spent & Cashed Out</p>
+<p class="text-xs font-bold text-slate-800 mt-3" data-i18n="screen3-label">Transaction History</p>
+<p class="text-[11px] text-slate-500" data-i18n="screen3-sub">Earned, Spent & Cashed Out</p>
 </div>
 
 <!-- Screen 4: CliQ & Settings Profile -->
 <div class="bg-slate-50 rounded-3xl p-3 border border-slate-200/80 shadow-sm text-center">
 <div class="bg-slate-100 rounded-2xl aspect-[9/19] overflow-hidden flex flex-col justify-center items-center relative group">
 <img src="images/imagesscreen-profile.jpg" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" class="w-full h-full object-cover" alt="Profile Screen" />
-<div class="p-4 text-left hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
+<div class="p-4 text-left rtl:text-right hidden w-full h-full bg-[#f4f9ff] flex flex-col justify-between">
 <div>
-<span class="text-[11px] font-bold text-slate-400">Profile</span>
-<p class="text-xs font-bold text-slate-800 mt-1">CliQ Management & Account Info</p>
+<span class="text-[11px] font-bold text-slate-400" data-i18n="screen4-cat">Profile</span>
+<p class="text-xs font-bold text-slate-800 mt-1" data-i18n="screen4-desc">CliQ Management & Account Info</p>
 </div>
 <div class="p-2.5 bg-white rounded-xl text-center shadow-xs text-xs font-bold text-slate-800">
 CliQ Alias Linked
 </div>
 </div>
 </div>
-<p class="text-xs font-bold text-slate-800 mt-3">CliQ & Account</p>
-<p class="text-[11px] text-slate-500">Fast withdrawals anytime</p>
+<p class="text-xs font-bold text-slate-800 mt-3" data-i18n="screen4-label">CliQ & Account</p>
+<p class="text-[11px] text-slate-500" data-i18n="screen4-sub">Fast withdrawals anytime</p>
 </div>
 
 </div>
@@ -298,17 +432,17 @@ CliQ Alias Linked
 </div>
 </section>
 
-<!-- ================= 2. APP CATEGORIES (EXACT FROM APP SCREENSHOT) ================= -->
+<!-- ================= 2. APP CATEGORIES ================= -->
 <section id="categories" class="py-20 bg-slate-50">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
 <div class="text-center max-w-xl mx-auto mb-14">
-<h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider">Browse Categories</h2>
-<p class="text-3xl font-extrabold text-slate-900 mt-1">Where Can You Earn?</p>
-<p class="text-slate-500 text-sm mt-2">Fraction is expanding across all daily lifestyle categories in Jordan.</p>
+<h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider" data-i18n="cat-tag">Browse Categories</h2>
+<p class="text-3xl font-extrabold text-slate-900 mt-1" data-i18n="cat-title">Where Can You Earn?</p>
+<p class="text-slate-500 text-sm mt-2" data-i18n="cat-desc">Fraction is expanding across all daily lifestyle categories in Jordan.</p>
 </div>
 
-<!-- Categories 9-Grid (Exact match to Fraction App UI) -->
+<!-- Categories 9-Grid -->
 <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-5 max-w-4xl mx-auto">
 
 <!-- Restaurants -->
@@ -316,8 +450,8 @@ CliQ Alias Linked
 <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
 <i data-lucide="utensils" class="w-7 h-7"></i>
 </div>
-<h4 class="font-bold text-slate-900 text-sm">Restaurants</h4>
-<p class="text-[11px] text-slate-400 mt-1">Pizza, Burgers, Fine Dining</p>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="cat-restaurants">Restaurants</h4>
+<p class="text-[11px] text-slate-400 mt-1" data-i18n="cat-sub-restaurants">Pizza, Burgers, Fine Dining</p>
 </div>
 
 <!-- Cafes -->
@@ -325,8 +459,8 @@ CliQ Alias Linked
 <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
 <i data-lucide="coffee" class="w-7 h-7"></i>
 </div>
-<h4 class="font-bold text-slate-900 text-sm">Cafes</h4>
-<p class="text-[11px] text-slate-400 mt-1">Specialty Coffee & Bakeries</p>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="cat-cafes">Cafes</h4>
+<p class="text-[11px] text-slate-400 mt-1" data-i18n="cat-sub-cafes">Specialty Coffee & Bakeries</p>
 </div>
 
 <!-- Fashion -->
@@ -334,8 +468,8 @@ CliQ Alias Linked
 <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
 <i data-lucide="shirt" class="w-7 h-7"></i>
 </div>
-<h4 class="font-bold text-slate-900 text-sm">Fashion</h4>
-<p class="text-[11px] text-slate-400 mt-1">Men, Women & Footwear</p>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="cat-fashion">Fashion</h4>
+<p class="text-[11px] text-slate-400 mt-1" data-i18n="cat-sub-fashion">Men, Women & Footwear</p>
 </div>
 
 <!-- Electronics -->
@@ -343,8 +477,8 @@ CliQ Alias Linked
 <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
 <i data-lucide="laptop" class="w-7 h-7"></i>
 </div>
-<h4 class="font-bold text-slate-900 text-sm">Electronics</h4>
-<p class="text-[11px] text-slate-400 mt-1">Mobiles, Accessories & Tech</p>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="cat-electronics">Electronics</h4>
+<p class="text-[11px] text-slate-400 mt-1" data-i18n="cat-sub-electronics">Mobiles, Accessories & Tech</p>
 </div>
 
 <!-- Groceries -->
@@ -352,8 +486,8 @@ CliQ Alias Linked
 <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
 <i data-lucide="shopping-cart" class="w-7 h-7"></i>
 </div>
-<h4 class="font-bold text-slate-900 text-sm">Groceries</h4>
-<p class="text-[11px] text-slate-400 mt-1">Supermarkets & Markets</p>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="cat-groceries">Groceries</h4>
+<p class="text-[11px] text-slate-400 mt-1" data-i18n="cat-sub-groceries">Supermarkets & Markets</p>
 </div>
 
 <!-- Health & Beauty -->
@@ -361,8 +495,8 @@ CliQ Alias Linked
 <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
 <i data-lucide="sparkles" class="w-7 h-7"></i>
 </div>
-<h4 class="font-bold text-slate-900 text-sm">Health & Beauty</h4>
-<p class="text-[11px] text-slate-400 mt-1">Skincare, Salons & Wellness</p>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="cat-beauty">Health & Beauty</h4>
+<p class="text-[11px] text-slate-400 mt-1" data-i18n="cat-sub-beauty">Skincare, Salons & Wellness</p>
 </div>
 
 <!-- Home & Garden -->
@@ -370,8 +504,8 @@ CliQ Alias Linked
 <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
 <i data-lucide="home" class="w-7 h-7"></i>
 </div>
-<h4 class="font-bold text-slate-900 text-sm">Home & Garden</h4>
-<p class="text-[11px] text-slate-400 mt-1">Decor, Furniture & Plants</p>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="cat-home">Home & Garden</h4>
+<p class="text-[11px] text-slate-400 mt-1" data-i18n="cat-sub-home">Decor, Furniture & Plants</p>
 </div>
 
 <!-- Sports & Fitness -->
@@ -379,8 +513,8 @@ CliQ Alias Linked
 <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
 <i data-lucide="dumbbell" class="w-7 h-7"></i>
 </div>
-<h4 class="font-bold text-slate-900 text-sm">Sports & Fitness</h4>
-<p class="text-[11px] text-slate-400 mt-1">Gyms, Gear & Supplements</p>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="cat-sports">Sports & Fitness</h4>
+<p class="text-[11px] text-slate-400 mt-1" data-i18n="cat-sub-sports">Gyms, Gear & Supplements</p>
 </div>
 
 <!-- Services & Jewelry -->
@@ -388,8 +522,8 @@ CliQ Alias Linked
 <div class="w-14 h-14 rounded-2xl bg-fraction-50 text-fraction-600 flex items-center justify-center mb-3">
 <i data-lucide="wrench" class="w-7 h-7"></i>
 </div>
-<h4 class="font-bold text-slate-900 text-sm">Services & Jewelry</h4>
-<p class="text-[11px] text-slate-400 mt-1">Jewelry, Repair & Auto</p>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="cat-services">Services & Jewelry</h4>
+<p class="text-[11px] text-slate-400 mt-1" data-i18n="cat-sub-services">Jewelry, Repair & Auto</p>
 </div>
 
 </div>
@@ -397,34 +531,34 @@ CliQ Alias Linked
 </div>
 </section>
 
-<!-- ================= 3. STORES NETWORK (WITH REAL PARTNER DATA) ================= -->
+<!-- ================= 3. STORES NETWORK ================= -->
 <section id="stores" class="py-20 bg-white">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6 text-left rtl:text-right">
 <div>
-<h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider">Stores Directory</h2>
-<p class="text-3xl font-extrabold text-slate-900 mt-1">Participating Merchants</p>
-<p class="text-slate-500 mt-2 text-sm max-w-lg">Visit any of our active partner stores in Jordan to scan & earn instant cashback.</p>
+<h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider" data-i18n="stores-tag">Stores Directory</h2>
+<p class="text-3xl font-extrabold text-slate-900 mt-1" data-i18n="stores-title">Participating Merchants</p>
+<p class="text-slate-500 mt-2 text-sm max-w-lg" data-i18n="stores-desc">Visit any of our active partner stores in Jordan to scan & earn instant cashback.</p>
 </div>
 
 <a href="#partner-form" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-fraction-50 border border-fraction-300 text-fraction-700 font-bold text-sm hover:bg-fraction-100 transition">
 <i data-lucide="store" class="w-4 h-4"></i>
-Become a Partner Store
+<span data-i18n="btn-partner-store">Become a Partner Store</span>
 </a>
 </div>
 
-<!-- Filter Buttons matching screenshot -->
+<!-- Filter Buttons -->
 <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 hide-scrollbar">
-<button onclick="filterStores('all')" class="store-filter active shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-fraction-600 text-white shadow-sm transition">All</button>
-<button onclick="filterStores('Restaurants')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Restaurants</button>
-<button onclick="filterStores('Cafes')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Cafes</button>
-<button onclick="filterStores('Jewelry')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Jewelry</button>
-<button onclick="filterStores('Fashion')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Fashion</button>
-<button onclick="filterStores('Chocolate')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">Chocolate & Gifts</button>
+<button onclick="filterStores('all')" class="store-filter active shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-fraction-600 text-white shadow-sm transition" data-i18n="filter-all">All</button>
+<button onclick="filterStores('Restaurants')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-i18n="filter-restaurants">Restaurants</button>
+<button onclick="filterStores('Cafes')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-i18n="filter-cafes">Cafes</button>
+<button onclick="filterStores('Jewelry')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-i18n="filter-jewelry">Jewelry</button>
+<button onclick="filterStores('Fashion')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-i18n="filter-fashion">Fashion</button>
+<button onclick="filterStores('Chocolate')" class="store-filter shrink-0 px-5 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition" data-i18n="filter-gifts">Chocolate & Gifts</button>
 </div>
 
-<!-- Real Stores Cards Grid (Exact data from Screenshots) -->
+<!-- Real Stores Cards Grid -->
 <div id="storesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
 <!-- Store 1: Bella Napoli Pizza -->
@@ -433,14 +567,14 @@ Become a Partner Store
 <div class="w-14 h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-xl font-bold shadow-xs">
 🍕
 </div>
-<div>
+<div class="text-left rtl:text-right">
 <h4 class="font-bold text-slate-900 text-base">Bella Napoli Pizza</h4>
-<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Restaurants</span>
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1" data-i18n="cat-restaurants">Restaurants</span>
 </div>
 </div>
-<div class="text-right">
+<div class="text-right rtl:text-left">
 <span class="text-base font-extrabold text-fraction-600">10%</span>
-<div class="text-[10px] text-slate-400">Cashback</div>
+<div class="text-[10px] text-slate-400" data-i18n="txt-cashback">Cashback</div>
 </div>
 </div>
 
@@ -450,14 +584,14 @@ Become a Partner Store
 <div class="w-14 h-14 rounded-2xl bg-slate-900 text-amber-400 flex items-center justify-center text-xl font-bold shadow-xs">
 ⏳
 </div>
-<div>
+<div class="text-left rtl:text-right">
 <h4 class="font-bold text-slate-900 text-base">Quality Time</h4>
-<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Jewelry</span>
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1" data-i18n="cat-jewelry">Jewelry</span>
 </div>
 </div>
-<div class="text-right">
+<div class="text-right rtl:text-left">
 <span class="text-base font-extrabold text-fraction-600">10%</span>
-<div class="text-[10px] text-slate-400">Cashback</div>
+<div class="text-[10px] text-slate-400" data-i18n="txt-cashback">Cashback</div>
 </div>
 </div>
 
@@ -467,14 +601,14 @@ Become a Partner Store
 <div class="w-14 h-14 rounded-2xl bg-black text-amber-300 flex items-center justify-center text-xl font-bold shadow-xs">
 🍳
 </div>
-<div>
+<div class="text-left rtl:text-right">
 <h4 class="font-bold text-slate-900 text-base">Eggcited</h4>
-<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Restaurants</span>
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1" data-i18n="cat-restaurants">Restaurants</span>
 </div>
 </div>
-<div class="text-right">
+<div class="text-right rtl:text-left">
 <span class="text-base font-extrabold text-fraction-600">12.5%</span>
-<div class="text-[10px] text-slate-400">Cashback</div>
+<div class="text-[10px] text-slate-400" data-i18n="txt-cashback">Cashback</div>
 </div>
 </div>
 
@@ -484,14 +618,14 @@ Become a Partner Store
 <div class="w-14 h-14 rounded-2xl bg-slate-950 text-yellow-500 flex items-center justify-center text-xl font-bold shadow-xs">
 💎
 </div>
-<div>
+<div class="text-left rtl:text-right">
 <h4 class="font-bold text-slate-900 text-base">Mohannad Farrah Jewelry</h4>
-<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Jewelry</span>
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1" data-i18n="cat-jewelry">Jewelry</span>
 </div>
 </div>
-<div class="text-right">
+<div class="text-right rtl:text-left">
 <span class="text-base font-extrabold text-fraction-600">7%</span>
-<div class="text-[10px] text-slate-400">Cashback</div>
+<div class="text-[10px] text-slate-400" data-i18n="txt-cashback">Cashback</div>
 </div>
 </div>
 
@@ -501,14 +635,14 @@ Become a Partner Store
 <div class="w-14 h-14 rounded-2xl bg-white border border-slate-200 flex items-center justify-center text-xl font-bold shadow-xs">
 🍫
 </div>
-<div>
+<div class="text-left rtl:text-right">
 <h4 class="font-bold text-slate-900 text-base">Al Fursan Chocolate</h4>
-<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Chocolate&Gifts</span>
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1" data-i18n="filter-gifts">Chocolate & Gifts</span>
 </div>
 </div>
-<div class="text-right">
+<div class="text-right rtl:text-left">
 <span class="text-base font-extrabold text-fraction-600">5%</span>
-<div class="text-[10px] text-slate-400">Cashback</div>
+<div class="text-[10px] text-slate-400" data-i18n="txt-cashback">Cashback</div>
 </div>
 </div>
 
@@ -518,14 +652,14 @@ Become a Partner Store
 <div class="w-14 h-14 rounded-2xl bg-blue-900 text-white flex items-center justify-center text-sm font-black shadow-xs">
 NK
 </div>
-<div>
+<div class="text-left rtl:text-right">
 <h4 class="font-bold text-slate-900 text-base">Nasser Abukhalaf</h4>
-<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1">Fashion</span>
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 text-[11px] font-semibold mt-1" data-i18n="cat-fashion">Fashion</span>
 </div>
 </div>
-<div class="text-right">
+<div class="text-right rtl:text-left">
 <span class="text-base font-extrabold text-fraction-600">5%</span>
-<div class="text-[10px] text-slate-400">Cashback</div>
+<div class="text-[10px] text-slate-400" data-i18n="txt-cashback">Cashback</div>
 </div>
 </div>
 
@@ -533,23 +667,22 @@ NK
 
 <!-- Become a Partner Box -->
 <div id="partner-form" class="mt-16 bg-gradient-to-br from-fraction-50 to-sky-50 border border-fraction-200 rounded-3xl p-8 lg:p-12">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left rtl:text-right">
 
 <div class="lg:col-span-6 space-y-4">
-<span class="px-3 py-1 rounded-full bg-white text-fraction-700 font-bold text-xs border border-fraction-200 shadow-xs">
+<span class="px-3 py-1 rounded-full bg-white text-fraction-700 font-bold text-xs border border-fraction-200 shadow-xs" data-i18n="partner-badge">
 Merchant Network
 </span>
-<h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+<h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight" data-i18n="partner-title">
 Join Fraction as a Partner Store in Jordan
 </h3>
-<p class="text-slate-600 text-sm leading-relaxed">
+<p class="text-slate-600 text-sm leading-relaxed" data-i18n="partner-desc">
 Drive direct sales and loyalty without monthly POS rental hardware fees or payment gateway integration delays. Cashiers scan user QR codes or enter User IDs right from any smartphone.
 </p>
 <div class="pt-2">
-<!-- INTEGRATION CTA TO MARKET CALCULATOR -->
 <a href="market-calculator.html" class="inline-flex items-center gap-2 text-fraction-700 font-bold text-sm hover:underline">
-<span>View Merchant Insights & ROI Calculator</span>
-<i data-lucide="arrow-right" class="w-4 h-4"></i>
+<span data-i18n="partner-link-insights">View Merchant Insights & ROI Calculator</span>
+<i data-lucide="arrow-right" class="w-4 h-4 rtl:rotate-180"></i>
 </a>
 </div>
 </div>
@@ -557,14 +690,14 @@ Drive direct sales and loyalty without monthly POS rental hardware fees or payme
 <div class="lg:col-span-6">
 <form onsubmit="handlePartnerSubmit(event)" class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-sm space-y-3">
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-<input type="text" placeholder="Brand / Store Name" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
-<input type="text" placeholder="Location / City (Amman, Zarqa..)" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+<input type="text" id="partnerStoreName" placeholder="Brand / Store Name" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+<input type="text" id="partnerStoreLoc" placeholder="Location / City (Amman, Zarqa..)" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-<input type="tel" placeholder="Jordan Mobile (+962)" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
-<input type="email" placeholder="Business Email" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+<input type="tel" id="partnerPhone" placeholder="Jordan Mobile (+962)" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+<input type="email" id="partnerEmail" placeholder="Business Email" required class="w-full px-4 py-3 text-xs sm:text-sm rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
 </div>
-<button type="submit" class="w-full py-3.5 rounded-xl bg-fraction-600 text-white font-bold text-sm shadow-md hover:bg-fraction-700 transition">
+<button type="submit" class="w-full py-3.5 rounded-xl bg-fraction-600 text-white font-bold text-sm shadow-md hover:bg-fraction-700 transition" data-i18n="partner-btn-submit">
 Submit Partnership Request
 </button>
 </form>
@@ -579,25 +712,25 @@ Submit Partnership Request
 <!-- ================= 4. MERCHANT INSIGHTS BANNER ================= -->
 <section class="py-16 bg-slate-900 text-white relative overflow-hidden">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center text-left rtl:text-right">
 
 <div class="lg:col-span-8 space-y-3">
 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fraction-500/20 text-fraction-300 text-xs font-bold border border-fraction-500/30">
-<i data-lucide="bar-chart-3" class="w-3.5 h-3.5"></i> Merchant Insights Ready
+<i data-lucide="bar-chart-3" class="w-3.5 h-3.5"></i>
+<span data-i18n="banner-insights-tag">Merchant Insights Ready</span>
 </div>
-<h2 class="text-3xl font-extrabold tracking-tight">
+<h2 class="text-3xl font-extrabold tracking-tight" data-i18n="banner-insights-title">
 Calculate your store ROI & revenue uplift
 </h2>
-<p class="text-slate-300 text-sm max-w-2xl leading-relaxed">
+<p class="text-slate-300 text-sm max-w-2xl leading-relaxed" data-i18n="banner-insights-desc">
 Interested in calculating how much revenue and customer retention Fraction can generate for your store? Launch our dedicated Merchant Market Calculator.
 </p>
 </div>
 
-<div class="lg:col-span-4 flex lg:justify-end">
-<!-- LINK TO market-calculator.html -->
+<div class="lg:col-span-4 flex lg:justify-end rtl:lg:justify-start">
 <a href="market-calculator.html" class="inline-flex items-center gap-3 px-7 py-4 rounded-2xl bg-fraction-500 hover:bg-fraction-400 text-white font-extrabold text-sm shadow-xl transition duration-300">
-<span>Open Market Calculator</span>
-<i data-lucide="arrow-right" class="w-5 h-5"></i>
+<span data-i18n="banner-insights-btn">Open Market Calculator</span>
+<i data-lucide="arrow-right" class="w-5 h-5 rtl:rotate-180"></i>
 </a>
 </div>
 
@@ -615,11 +748,11 @@ Interested in calculating how much revenue and customer retention Fraction can g
 <i data-lucide="smartphone" class="w-7 h-7"></i>
 </div>
 
-<h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+<h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight" data-i18n="download-title">
 Download Fraction Today
 </h2>
 
-<p class="text-slate-300 text-sm sm:text-base">
+<p class="text-slate-300 text-sm sm:text-base" data-i18n="download-sub">
 Start earning cashback with zero cards, zero bank linkages, and instant CliQ cashout.
 </p>
 
@@ -628,7 +761,7 @@ Start earning cashback with zero cards, zero bank linkages, and instant CliQ cas
 
 <a href="#" class="flex items-center gap-3 px-6 py-3 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow">
 <i data-lucide="apple" class="w-6 h-6"></i>
-<div class="text-left leading-tight">
+<div class="text-left rtl:text-right leading-tight">
 <span class="block text-[10px] uppercase font-normal text-slate-500">Download on</span>
 <span class="text-xs font-bold">App Store</span>
 </div>
@@ -636,7 +769,7 @@ Start earning cashback with zero cards, zero bank linkages, and instant CliQ cas
 
 <a href="#" class="flex items-center gap-3 px-6 py-3 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow">
 <i data-lucide="play" class="w-6 h-6"></i>
-<div class="text-left leading-tight">
+<div class="text-left rtl:text-right leading-tight">
 <span class="block text-[10px] uppercase font-normal text-slate-500">GET IT ON</span>
 <span class="text-xs font-bold">Google Play</span>
 </div>
@@ -644,7 +777,7 @@ Start earning cashback with zero cards, zero bank linkages, and instant CliQ cas
 
 <a href="#" class="flex items-center gap-3 px-6 py-3 bg-slate-800 text-white border border-slate-700 rounded-2xl font-bold hover:bg-slate-700 transition shadow">
 <i data-lucide="download-cloud" class="w-6 h-6 text-fraction-400"></i>
-<div class="text-left leading-tight">
+<div class="text-left rtl:text-right leading-tight">
 <span class="block text-[10px] uppercase font-normal text-slate-400">Direct APK</span>
 <span class="text-xs font-bold">Huawei / Android</span>
 </div>
@@ -661,14 +794,14 @@ Start earning cashback with zero cards, zero bank linkages, and instant CliQ cas
 <section id="contact" class="py-20 bg-white border-t border-slate-100">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 text-left rtl:text-right">
 
 <!-- Contact Info -->
 <div class="lg:col-span-5 space-y-6">
 <div>
-<h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider">Support & Inquiries</h2>
-<p class="text-3xl font-extrabold text-slate-900 mt-1">Get in Touch</p>
-<p class="text-slate-500 text-sm mt-2">Questions about CliQ cashouts, store onboarding, or User ID rewards? Our Amman team is here to assist.</p>
+<h2 class="text-xs uppercase font-bold text-fraction-600 tracking-wider" data-i18n="contact-tag">Support & Inquiries</h2>
+<p class="text-3xl font-extrabold text-slate-900 mt-1" data-i18n="contact-title">Get in Touch</p>
+<p class="text-slate-500 text-sm mt-2" data-i18n="contact-desc">Questions about CliQ cashouts, store onboarding, or User ID rewards? Our Amman team is here to assist.</p>
 </div>
 
 <div class="space-y-4 pt-2">
@@ -677,8 +810,8 @@ Start earning cashback with zero cards, zero bank linkages, and instant CliQ cas
 <i data-lucide="map-pin" class="w-5 h-5"></i>
 </div>
 <div>
-<h4 class="font-bold text-slate-900 text-sm">Amman Office</h4>
-<p class="text-slate-500 text-xs">Amman, Jordan</p>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="contact-office">Amman Office</h4>
+<p class="text-slate-500 text-xs" data-i18n="contact-office-sub">Amman, Jordan</p>
 </div>
 </div>
 
@@ -687,8 +820,8 @@ Start earning cashback with zero cards, zero bank linkages, and instant CliQ cas
 <i data-lucide="phone-call" class="w-5 h-5"></i>
 </div>
 <div>
-<h4 class="font-bold text-slate-900 text-sm">Phone & WhatsApp</h4>
-<p class="text-slate-500 text-xs">+962 79 831 3353</p>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="contact-phone">Phone & WhatsApp</h4>
+<p class="text-slate-500 text-xs" dir="ltr">+962 79 831 3353</p>
 </div>
 </div>
 
@@ -697,7 +830,7 @@ Start earning cashback with zero cards, zero bank linkages, and instant CliQ cas
 <i data-lucide="mail" class="w-5 h-5"></i>
 </div>
 <div>
-<h4 class="font-bold text-slate-900 text-sm">Email Support</h4>
+<h4 class="font-bold text-slate-900 text-sm" data-i18n="contact-email">Email Support</h4>
 <p class="text-slate-500 text-xs">support@fractionjo.com</p>
 </div>
 </div>
@@ -710,27 +843,27 @@ Start earning cashback with zero cards, zero bank linkages, and instant CliQ cas
 <form onsubmit="handleContactSubmit(event)" class="space-y-4">
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
 <div>
-<label class="block text-xs font-semibold text-slate-700 mb-1">Your Name</label>
-<input type="text" required placeholder="Ahmad ..." class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+<label class="block text-xs font-semibold text-slate-700 mb-1" data-i18n="form-name">Your Name</label>
+<input type="text" id="contactName" required placeholder="Ahmad ..." class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
 </div>
 <div>
-<label class="block text-xs font-semibold text-slate-700 mb-1">Phone Number</label>
-<input type="tel" required placeholder="+962 7X XXX XXXX" class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
+<label class="block text-xs font-semibold text-slate-700 mb-1" data-i18n="form-phone">Phone Number</label>
+<input type="tel" id="contactPhone" required placeholder="+962 7X XXX XXXX" class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500" />
 </div>
 </div>
 <div>
-<label class="block text-xs font-semibold text-slate-700 mb-1">Subject</label>
+<label class="block text-xs font-semibold text-slate-700 mb-1" data-i18n="form-subject">Subject</label>
 <select class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500">
-<option>General App Support</option>
-<option>CliQ Cashout Help</option>
-<option>Merchant Partnership</option>
+<option data-i18n="opt-support">General App Support</option>
+<option data-i18n="opt-cliq">CliQ Cashout Help</option>
+<option data-i18n="opt-partner">Merchant Partnership</option>
 </select>
 </div>
 <div>
-<label class="block text-xs font-semibold text-slate-700 mb-1">Message</label>
-<textarea rows="4" required placeholder="How can we help you?" class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500"></textarea>
+<label class="block text-xs font-semibold text-slate-700 mb-1" data-i18n="form-msg">Message</label>
+<textarea rows="4" id="contactMsg" required placeholder="How can we help you?" class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500"></textarea>
 </div>
-<button type="submit" class="w-full py-3.5 rounded-xl bg-fraction-600 text-white font-bold text-sm shadow hover:bg-fraction-700 transition">
+<button type="submit" class="w-full py-3.5 rounded-xl bg-fraction-600 text-white font-bold text-sm shadow hover:bg-fraction-700 transition" data-i18n="form-btn-send">
 Send Message
 </button>
 </form>
@@ -752,15 +885,17 @@ Send Message
 %
 </div>
 <span class="text-lg font-bold text-white tracking-tight">Fraction<span class="text-fraction-500">.</span></span>
-<span class="text-xs text-slate-500 border-l border-slate-800 pl-3">Jordan Cardless Cashback</span>
+<span class="text-xs text-slate-500 border-l rtl:border-r rtl:border-l-0 border-slate-800 pl-3 rtl:pr-3" data-i18n="footer-sub">Jordan Cardless Cashback</span>
 </div>
 
 <div class="flex flex-wrap gap-6 text-xs font-medium">
-<a href="#home" class="hover:text-white transition">Home</a>
-<a href="#categories" class="hover:text-white transition">Categories</a>
-<a href="#stores" class="hover:text-white transition">Stores</a>
-<a href="market-calculator.html" class="text-fraction-400 hover:text-white transition">Merchant Insights</a>
-<a href="#contact" class="hover:text-white transition">Contact</a>
+<a href="#home" class="hover:text-white transition" data-i18n="nav-home">Home</a>
+<a href="#how-it-works" class="hover:text-white transition" data-i18n="nav-how">How it Works</a>
+<a href="#calculator" class="hover:text-white transition" data-i18n="nav-calc">Forecaster</a>
+<a href="#categories" class="hover:text-white transition" data-i18n="nav-categories">Categories</a>
+<a href="#stores" class="hover:text-white transition" data-i18n="nav-stores">Stores</a>
+<a href="market-calculator.html" class="text-fraction-400 hover:text-white transition" data-i18n="nav-merchant-insights">Merchant Insights</a>
+<a href="#contact" class="hover:text-white transition" data-i18n="nav-contact">Contact</a>
 </div>
 
 <p class="text-xs text-slate-500">
@@ -783,7 +918,42 @@ mobileMenuBtn.addEventListener('click', () => {
 mobileMenu.classList.toggle('hidden');
 });
 
-// Store Filter Handling
+// 1. FORECASTER CASHBACK CALCULATOR LOGIC
+const sliderDining = document.getElementById('sliderDining');
+const sliderGroceries = document.getElementById('sliderGroceries');
+const sliderShopping = document.getElementById('sliderShopping');
+
+const valDining = document.getElementById('valDining');
+const valGroceries = document.getElementById('valGroceries');
+const valShopping = document.getElementById('valShopping');
+const totalMonthlySpend = document.getElementById('totalMonthlySpend');
+const resMonthly = document.getElementById('resMonthly');
+const resAnnual = document.getElementById('resAnnual');
+
+function updateCashbackForecast() {
+  const d = parseFloat(sliderDining.value) || 0;
+  const g = parseFloat(sliderGroceries.value) || 0;
+  const s = parseFloat(sliderShopping.value) || 0;
+
+  valDining.textContent = d;
+  valGroceries.textContent = g;
+  valShopping.textContent = s;
+  totalMonthlySpend.textContent = (d + g + s);
+
+  // Average cashback rates: Dining (10%), Groceries (6%), Shopping/Fashion/Tech (8%)
+  const monthlyCashback = (d * 0.10) + (g * 0.06) + (s * 0.08);
+  const annualCashback = monthlyCashback * 12;
+
+  resMonthly.textContent = monthlyCashback.toFixed(2);
+  resAnnual.textContent = Math.round(annualCashback);
+}
+
+sliderDining.addEventListener('input', updateCashbackForecast);
+sliderGroceries.addEventListener('input', updateCashbackForecast);
+sliderShopping.addEventListener('input', updateCashbackForecast);
+updateCashbackForecast();
+
+// 2. STORE FILTER LOGIC
 function filterStores(category) {
 const cards = document.querySelectorAll('.store-card');
 const buttons = document.querySelectorAll('.store-filter');
@@ -804,15 +974,308 @@ card.style.display = 'none';
 });
 }
 
+// 3. FULL ARABIC & ENGLISH DICTIONARY
+const translations = {
+  en: {
+    "nav-home": "Home",
+    "nav-how": "How it Works",
+    "nav-calc": "Forecaster",
+    "nav-categories": "Categories",
+    "nav-stores": "Network Stores",
+    "nav-merchant-insights": "Merchant Insights",
+    "nav-contact": "Contact",
+    "nav-btn-app": "Get App",
+    "hero-badge": "🇯🇴 Jordan's #1 Cardless Cashback App",
+    "hero-title-1": "Shop in Jordan.",
+    "hero-title-2": "Earn Instant Cashback.",
+    "hero-title-3": "No Bank Cards Needed.",
+    "hero-desc": "Earn real Jordanian Dinars (JD) at your favorite stores by simply letting the cashier scan your QR code or enter your User ID. Cash out via CliQ, local cash agents, or pay for your next purchase.",
+    "feature-scan-title": "Scan & Earn",
+    "feature-scan-sub": "QR or User ID",
+    "feature-cliq-title": "CliQ Cashout",
+    "feature-cliq-sub": "Instant to any bank",
+    "feature-spend-title": "Spend Balance",
+    "feature-spend-sub": "In-store wallet pay",
+    "btn-download-hero": "Download Fraction",
+    "btn-calc-hero": "Forecast Cashback",
+    "calc-badge": "Personal Earnings Forecaster",
+    "calc-title": "How Much Will You Earn Back?",
+    "calc-subtitle": "Adjust your typical monthly spending in Jordan to estimate your direct cashback returns.",
+    "calc-slider1-label": "Cafes & Restaurants (Monthly)",
+    "calc-slider2-label": "Groceries & Everyday Marts",
+    "calc-slider3-label": "Fashion, Tech & Jewelry",
+    "calc-slider-rate1": "Avg. 10% Cashback",
+    "calc-slider-rate2": "Avg. 6% Cashback",
+    "calc-slider-rate3": "Avg. 8% Cashback",
+    "calc-total-spend": "Total Estimated Monthly Spend:",
+    "calc-forecast-badge": "Your Cashback Forecast",
+    "calc-annual-title": "Yearly Rewards Total",
+    "calc-monthly-box": "Monthly Return",
+    "calc-payout-box": "Payout Channel",
+    "calc-perk-text": "This pays for over 140 free specialty coffees or covers multiple grocery runs across Amman each year!",
+    "calc-btn-start": "Start Earning This Cash",
+    "inside-tag": "Inside Fraction",
+    "inside-title": "Simple, Fast & Transparent",
+    "inside-desc": "Check out real screenshots from the Fraction mobile app.",
+    "screen1-cat": "Categories",
+    "screen1-desc": "Restaurants, Cafes, Fashion, Tech & 6+ more",
+    "screen1-badge": "9+ Categories",
+    "screen1-label": "Explore Categories",
+    "screen1-sub": "Everyday retail in Jordan",
+    "screen2-cat": "Network",
+    "screen2-desc": "Live Store Directory with Search & Filters",
+    "screen2-badge": "Search & Filter",
+    "screen2-label": "Store Network",
+    "screen2-sub": "Sorted by highest cashback %",
+    "screen3-cat": "Transactions",
+    "screen3-desc": "Real-time breakdown of Earned JOD",
+    "screen3-label": "Transaction History",
+    "screen3-sub": "Earned, Spent & Cashed Out",
+    "screen4-cat": "Profile",
+    "screen4-desc": "CliQ Management & Account Info",
+    "screen4-label": "CliQ & Account",
+    "screen4-sub": "Fast withdrawals anytime",
+    "cat-tag": "Browse Categories",
+    "cat-title": "Where Can You Earn?",
+    "cat-desc": "Fraction is expanding across all daily lifestyle categories in Jordan.",
+    "cat-restaurants": "Restaurants",
+    "cat-sub-restaurants": "Pizza, Burgers, Fine Dining",
+    "cat-cafes": "Cafes",
+    "cat-sub-cafes": "Specialty Coffee & Bakeries",
+    "cat-fashion": "Fashion",
+    "cat-sub-fashion": "Men, Women & Footwear",
+    "cat-electronics": "Electronics",
+    "cat-sub-electronics": "Mobiles, Accessories & Tech",
+    "cat-groceries": "Groceries",
+    "cat-sub-groceries": "Supermarkets & Markets",
+    "cat-beauty": "Health & Beauty",
+    "cat-sub-beauty": "Skincare, Salons & Wellness",
+    "cat-home": "Home & Garden",
+    "cat-sub-home": "Decor, Furniture & Plants",
+    "cat-sports": "Sports & Fitness",
+    "cat-sub-sports": "Gyms, Gear & Supplements",
+    "cat-services": "Services & Jewelry",
+    "cat-sub-services": "Jewelry, Repair & Auto",
+    "cat-jewelry": "Jewelry",
+    "stores-tag": "Stores Directory",
+    "stores-title": "Participating Merchants",
+    "stores-desc": "Visit any of our active partner stores in Jordan to scan & earn instant cashback.",
+    "btn-partner-store": "Become a Partner Store",
+    "filter-all": "All",
+    "filter-restaurants": "Restaurants",
+    "filter-cafes": "Cafes",
+    "filter-jewelry": "Jewelry",
+    "filter-fashion": "Fashion",
+    "filter-gifts": "Chocolate & Gifts",
+    "txt-cashback": "Cashback",
+    "partner-badge": "Merchant Network",
+    "partner-title": "Join Fraction as a Partner Store in Jordan",
+    "partner-desc": "Drive direct sales and loyalty without monthly POS rental hardware fees or payment gateway integration delays. Cashiers scan user QR codes or enter User IDs right from any smartphone.",
+    "partner-link-insights": "View Merchant Insights & ROI Calculator",
+    "partner-btn-submit": "Submit Partnership Request",
+    "banner-insights-tag": "Merchant Insights Ready",
+    "banner-insights-title": "Calculate your store ROI & revenue uplift",
+    "banner-insights-desc": "Interested in calculating how much revenue and customer retention Fraction can generate for your store? Launch our dedicated Merchant Market Calculator.",
+    "banner-insights-btn": "Open Market Calculator",
+    "download-title": "Download Fraction Today",
+    "download-sub": "Start earning cashback with zero cards, zero bank linkages, and instant CliQ cashout.",
+    "contact-tag": "Support & Inquiries",
+    "contact-title": "Get in Touch",
+    "contact-desc": "Questions about CliQ cashouts, store onboarding, or User ID rewards? Our Amman team is here to assist.",
+    "contact-office": "Amman Office",
+    "contact-office-sub": "Amman, Jordan",
+    "contact-phone": "Phone & WhatsApp",
+    "contact-email": "Email Support",
+    "form-name": "Your Name",
+    "form-phone": "Phone Number",
+    "form-subject": "Subject",
+    "form-msg": "Message",
+    "opt-support": "General App Support",
+    "opt-cliq": "CliQ Cashout Help",
+    "opt-partner": "Merchant Partnership",
+    "form-btn-send": "Send Message",
+    "footer-sub": "Jordan Cardless Cashback"
+  },
+  ar: {
+    "nav-home": "الرئيسية",
+    "nav-how": "كيف يعمل التطبيق",
+    "nav-calc": "حاسبة التوفير",
+    "nav-categories": "الأقسام",
+    "nav-stores": "المتاجر والشركاء",
+    "nav-merchant-insights": "أرباح التجار",
+    "nav-contact": "تواصل معنا",
+    "nav-btn-app": "تحميل التطبيق",
+    "hero-badge": "🇯🇴 التطبيق الأول للكاش باك بدون بطاقات بنكية في الأردن",
+    "hero-title-1": "تسوّق في الأردن.",
+    "hero-title-2": "واكسب كاش باك فوري.",
+    "hero-title-3": "بدون الحاجة لبطاقة بنكية.",
+    "hero-desc": "اكسب دنانير أردنية حقيقية (JD) من متاجرك المفضلة بمجرد مسح رمز الـ QR أو إدخال رقم المستخدم لدى الكاشير. اسحب أرباحك فوراً عبر كليك (CliQ)، أو وكلاء الكاش، أو استخدمها لمشترياتك القادمة.",
+    "feature-scan-title": "امسح واكسب",
+    "feature-scan-sub": "رمز QR أو رقم المستخدم",
+    "feature-cliq-title": "سحب عبر كليك (CliQ)",
+    "feature-cliq-sub": "فوري لأي بنك في الأردن",
+    "feature-spend-title": "ادفع من رصيدك",
+    "feature-spend-sub": "مشترياتك داخل المتجر",
+    "btn-download-hero": "تحميل تطبيق Fraction",
+    "btn-calc-hero": "احسب كاش باك أرباحك",
+    "calc-badge": "حاسبة توقعات الكاش باك الشخصية",
+    "calc-title": "كم ستكسب كاش باك سنوياً؟",
+    "calc-subtitle": "حدّد معدل مصاريفك الشهرية التقريبية في الأردن لترى كم ديناراً سيعود إلى محفظتك مباشرة.",
+    "calc-slider1-label": "المقاهي والمطاعم (شهرياً)",
+    "calc-slider2-label": "السوبرماركت والمشتريات اليومية",
+    "calc-slider3-label": "الأزياء، الإلكترونيات والمجوهرات",
+    "calc-slider-rate1": "متوسط 10% كاش باك",
+    "calc-slider-rate2": "متوسط 6% كاش باك",
+    "calc-slider-rate3": "متوسط 8% كاش باك",
+    "calc-total-spend": "مجموع إنفاقك الشهري التقديري:",
+    "calc-forecast-badge": "توقعات كاش باك أرباحك",
+    "calc-annual-title": "مجموع كاش باك أرباحك سنوياً",
+    "calc-monthly-box": "العائد الشهري",
+    "calc-payout-box": "طريقة السحب",
+    "calc-perk-text": "هذا المبلغ يغطي أكثر من 140 فنجان قهوة مختصة مجاناً أو مشتريات متعددة من السوبرماركت في عمّان سنوياً!",
+    "calc-btn-start": "ابدأ بجمع هذا الكاش الآن",
+    "inside-tag": "داخل تطبيق Fraction",
+    "inside-title": "بسيط، سريع، وشفاف",
+    "inside-desc": "شاهد لقطات حقيقية من واجهات تطبيق Fraction على الهاتف.",
+    "screen1-cat": "الأقسام",
+    "screen1-desc": "مطاعم، كافيهات، ملابس، إلكترونيات وأكثر من 6 مجالات",
+    "screen1-badge": "+9 تصنيفات",
+    "screen1-label": "استكشف الأقسام",
+    "screen1-sub": "مشترياتك اليومية في الأردن",
+    "screen2-cat": "شبكة المتاجر",
+    "screen2-desc": "دليل المتاجر المباشر مع خاصية البحث والفلترة",
+    "screen2-badge": "بحث وفلترة",
+    "screen2-label": "شبكة المحلات",
+    "screen2-sub": "مرتبة حسب أعلى نسبة كاش باك",
+    "screen3-cat": "الحركات والسجل",
+    "screen3-desc": "تفاصيل فورية بالدنانير المسترجعة",
+    "screen3-label": "سجل المعاملات",
+    "screen3-sub": "المكتسب، المصروف، والمسحوب",
+    "screen4-cat": "الحساب وكليك",
+    "screen4-desc": "إدارة اسم المستخدم لحساب كليك والملف الشخصي",
+    "screen4-label": "كليك والملف الشخصي",
+    "screen4-sub": "سحب سريع في أي وقت",
+    "cat-tag": "تصفح التصنيفات",
+    "cat-title": "أين يمكنك جمع الكاش باك؟",
+    "cat-desc": "تطبيق Fraction يتوسع ليشمل جميع مجالات الحياة اليومية في الأردن.",
+    "cat-restaurants": "المطاعم",
+    "cat-sub-restaurants": "بيتزا، برغر، ومطاعم متنوعة",
+    "cat-cafes": "المقاهي",
+    "cat-sub-cafes": "القهوة المختصة والمخابز",
+    "cat-fashion": "الأزياء والملابس",
+    "cat-sub-fashion": "رجالي، نسائي، وأحذية",
+    "cat-electronics": "الإلكترونيات",
+    "cat-sub-electronics": "هواتف، إكسسوارات وأجهزة",
+    "cat-groceries": "السوبرماركت والمواد التموينية",
+    "cat-sub-groceries": "أسواق، خضار وفواكه",
+    "cat-beauty": "الصحة والجمال",
+    "cat-sub-beauty": "عناية بالبشرة، صالونات ومكملات",
+    "cat-home": "المنزل والحديقة",
+    "cat-sub-home": "ديكور، أثاث ونباتات",
+    "cat-sports": "الرياضة واللياقة",
+    "cat-sub-sports": "نوادي رياضية ومعدات",
+    "cat-services": "المجوهرات والخدمات",
+    "cat-sub-services": "مجوهرات، تصليح وسيارات",
+    "cat-jewelry": "مجوهرات وساعات",
+    "stores-tag": "دليل المتاجر",
+    "stores-title": "المحلات والشركاء المعتمدون",
+    "stores-desc": "زر أي متجر من شركائنا في عمّان والأردن لمسح الرمز وربح الكاش باك فوراً.",
+    "btn-partner-store": "انضم كمتجر شريك",
+    "filter-all": "الكل",
+    "filter-restaurants": "المطاعم",
+    "filter-cafes": "الكافيهات",
+    "filter-jewelry": "المجوهرات والساعات",
+    "filter-fashion": "الأزياء",
+    "filter-gifts": "الشوكولاتة والهدايا",
+    "txt-cashback": "كاش باك",
+    "partner-badge": "شبكة التجار",
+    "partner-title": "انضم إلى شبكة متاجر Fraction في الأردن",
+    "partner-desc": "ضاعف مبيعاتك وزبائنك دون الحاجة لدفع رسوم تأجير أجهزة POS أو تعقيدات بوابات الدفع. يقوم الكاشير بمسح رمز العميل أو إدخال رقم الـ ID من أي هاتف ذكي.",
+    "partner-link-insights": "عرض حاسبة أرباح وعائد التجار",
+    "partner-btn-submit": "إرسال طلب الانضمام كشريك",
+    "banner-insights-tag": "بيانات ورؤى التجار جاهزة",
+    "banner-insights-title": "احسب العائد الإضافي على مبيعات متجرك",
+    "banner-insights-desc": "هل ترغب بمعرفة حجم المبيعات الإضافية ونسب احتفاظ الزبائن التي يوفرها Fraction لمتجرك؟ جرّب حاسبة السوق المخصصة للشركاء.",
+    "banner-insights-btn": "فتح حاسبة السوق للتجار",
+    "download-title": "حمّل تطبيق Fraction اليوم",
+    "download-sub": "ابدأ بكسب الكاش باك بدون بطاقات بنكية مع سحب فوري لأي بنك عبر كليك (CliQ).",
+    "contact-tag": "الدعم والاستفسارات",
+    "contact-title": "تواصل مع فريقنا",
+    "contact-desc": "لديك استفسار حول السحب عبر كليك، أو انضمام المتاجر؟ فريقنا في عمّان متواجد لمساعدتك.",
+    "contact-office": "مكتب عمّان",
+    "contact-office-sub": "عمّان، المملكة الأردنية الهاشمية",
+    "contact-phone": "الهاتف والواتساب",
+    "contact-email": "البريد الإلكتروني",
+    "form-name": "الاسم الكامل",
+    "form-phone": "رقم الهاتف",
+    "form-subject": "الموضوع",
+    "form-msg": "نص الرسالة",
+    "opt-support": "دعم عام للتطبيق",
+    "opt-cliq": "مساعدة في سحب كليك (CliQ)",
+    "opt-partner": "طلب شراكة كمتجر",
+    "form-btn-send": "إرسال الرسالة",
+    "footer-sub": "كاش باك الأردن بدون بطاقات"
+  }
+};
+
+let currentLang = 'en';
+const langToggleBtn = document.getElementById('langToggleBtn');
+const mobileLangToggleBtn = document.getElementById('mobileLangToggleBtn');
+const langLabel = document.getElementById('langLabel');
+const mobileLangLabel = document.getElementById('mobileLangLabel');
+
+function toggleLanguage() {
+  currentLang = currentLang === 'en' ? 'ar' : 'en';
+  document.documentElement.lang = currentLang;
+  document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+  
+  langLabel.textContent = currentLang === 'en' ? 'العربية' : 'English';
+  mobileLangLabel.textContent = currentLang === 'en' ? 'العربية' : 'English';
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[currentLang] && translations[currentLang][key]) {
+      el.textContent = translations[currentLang][key];
+    }
+  });
+
+  if (currentLang === 'ar') {
+    document.getElementById('partnerStoreName').placeholder = "اسم المحل / المتجر";
+    document.getElementById('partnerStoreLoc').placeholder = "المدينة / المنطقة (عمّان، الزرقاء..)";
+    document.getElementById('partnerPhone').placeholder = "رقم الهاتف الأردني (+962)";
+    document.getElementById('partnerEmail').placeholder = "البريد الإلكتروني للعمل";
+    document.getElementById('contactName').placeholder = "أحمد ...";
+    document.getElementById('contactMsg').placeholder = "كيف يمكننا مساعدتك؟";
+  } else {
+    document.getElementById('partnerStoreName').placeholder = "Brand / Store Name";
+    document.getElementById('partnerStoreLoc').placeholder = "Location / City (Amman, Zarqa..)";
+    document.getElementById('partnerPhone').placeholder = "Jordan Mobile (+962)";
+    document.getElementById('partnerEmail').placeholder = "Business Email";
+    document.getElementById('contactName').placeholder = "Ahmad ...";
+    document.getElementById('contactMsg').placeholder = "How can we help you?";
+  }
+
+  lucide.createIcons();
+}
+
+langToggleBtn.addEventListener('click', toggleLanguage);
+mobileLangToggleBtn.addEventListener('click', toggleLanguage);
+
 function handlePartnerSubmit(e) {
 e.preventDefault();
-alert('Thank you! A Fraction partner representative will reach out to you shortly.');
+const msg = currentLang === 'ar' 
+  ? 'شكراً لك! سيقوم ممثل شبكة شركاء Fraction بالتواصل معك قريباً.' 
+  : 'Thank you! A Fraction partner representative will reach out to you shortly.';
+alert(msg);
 e.target.reset();
 }
 
 function handleContactSubmit(e) {
 e.preventDefault();
-alert('Thank you! Your message has been sent to our Jordan support team.');
+const msg = currentLang === 'ar' 
+  ? 'تم إرسال رسالتك بنجاح إلى فريق الدعم في عمّان.' 
+  : 'Thank you! Your message has been sent to our Jordan support team.';
+alert(msg);
 e.target.reset();
 }
 </script>
