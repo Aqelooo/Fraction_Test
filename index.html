@@ -76,7 +76,7 @@ scrollbar-width: none;
 </a>
 
 <!-- Desktop Menu -->
-<nav class="hidden lg:flex items-center gap-6 font-semibold text-slate-600 text-sm">
+<nav class="hidden lg:flex items-center gap-5 font-semibold text-slate-600 text-sm">
 <a href="#home" class="hover:text-fraction-600 transition" data-i18n="nav-home">Home</a>
 <a href="#how-it-works" class="hover:text-fraction-600 transition" data-i18n="nav-how">How it Works</a>
 <a href="#calculator" class="hover:text-fraction-600 transition text-fraction-600 font-bold" data-i18n="nav-calc">Forecaster</a>
@@ -84,7 +84,7 @@ scrollbar-width: none;
 <a href="#stores" class="hover:text-fraction-600 transition" data-i18n="nav-stores">Network Stores</a>
 
 <!-- Direct integration with market-calculator.html -->
-<a href="market-calculator.html" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-fraction-50 text-fraction-600 border border-fraction-200 hover:bg-fraction-100 transition">
+<a href="market-calculator.html" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-fraction-50 text-fraction-600 border border-fraction-200 hover:bg-fraction-100 transition">
 <i data-lucide="line-chart" class="w-4 h-4"></i>
 <span data-i18n="nav-merchant-insights">Merchant Insights</span>
 </a>
@@ -127,6 +127,8 @@ scrollbar-width: none;
 <a href="#stores" class="block font-semibold text-slate-700 hover:text-fraction-600" data-i18n="nav-stores">Network Stores</a>
 <a href="market-calculator.html" class="block font-bold text-fraction-600 hover:text-fraction-700" data-i18n="nav-merchant-insights">Merchant Insights</a>
 <a href="#contact" class="block font-semibold text-slate-700 hover:text-fraction-600" data-i18n="nav-contact">Contact Us</a>
+<a href="#privacy" class="block text-xs font-semibold text-slate-500 hover:text-fraction-600" data-i18n="footer-privacy">Privacy Policy</a>
+<a href="#terms" class="block text-xs font-semibold text-slate-500 hover:text-fraction-600" data-i18n="footer-terms">Terms & Conditions</a>
 <a href="#download" class="block text-center w-full py-3 rounded-xl bg-fraction-600 text-white font-bold mt-2" data-i18n="nav-btn-app">Download Fraction</a>
 </div>
 </header>
@@ -211,7 +213,7 @@ Earn real Jordanian Dinars (<strong class="text-slate-900">JD</strong>) at your 
 </div>
 </section>
 
-<!-- ================= NEW: USER CASHBACK FORECASTER CALCULATOR ================= -->
+<!-- ================= CASHBACK FORECASTER CALCULATOR ================= -->
 <section id="calculator" class="py-20 bg-gradient-to-b from-[#f8fbff] to-white border-y border-slate-100">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -756,30 +758,33 @@ Download Fraction Today
 Start earning cashback with zero cards, zero bank linkages, and instant CliQ cashout.
 </p>
 
-<!-- Store Buttons -->
+<!-- Store Buttons with links -->
 <div class="flex flex-wrap justify-center gap-4 pt-4">
 
-<a href="#" class="flex items-center gap-3 px-6 py-3 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow">
+<!-- Apple App Store Link -->
+<a id="appStoreLink" href="https://apps.apple.com/app/fraction-jordan/id000000000" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-6 py-3 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow">
 <i data-lucide="apple" class="w-6 h-6"></i>
 <div class="text-left rtl:text-right leading-tight">
-<span class="block text-[10px] uppercase font-normal text-slate-500">Download on</span>
-<span class="text-xs font-bold">App Store</span>
+<span class="block text-[10px] uppercase font-normal text-slate-500" data-i18n="dl-appstore-sub">Download on</span>
+<span class="text-xs font-bold" data-i18n="dl-appstore-title">App Store</span>
 </div>
 </a>
 
-<a href="#" class="flex items-center gap-3 px-6 py-3 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow">
+<!-- Google Play Store Link -->
+<a id="googlePlayLink" href="https://play.google.com/store/apps/details?id=com.fractionjo.app" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-6 py-3 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow">
 <i data-lucide="play" class="w-6 h-6"></i>
 <div class="text-left rtl:text-right leading-tight">
-<span class="block text-[10px] uppercase font-normal text-slate-500">GET IT ON</span>
-<span class="text-xs font-bold">Google Play</span>
+<span class="block text-[10px] uppercase font-normal text-slate-500" data-i18n="dl-googleplay-sub">GET IT ON</span>
+<span class="text-xs font-bold" data-i18n="dl-googleplay-title">Google Play</span>
 </div>
 </a>
 
-<a href="#" class="flex items-center gap-3 px-6 py-3 bg-slate-800 text-white border border-slate-700 rounded-2xl font-bold hover:bg-slate-700 transition shadow">
+<!-- Direct APK Download Link -->
+<a id="directApkLink" href="downloads/fraction-latest.apk" download class="flex items-center gap-3 px-6 py-3 bg-slate-800 text-white border border-slate-700 rounded-2xl font-bold hover:bg-slate-700 transition shadow">
 <i data-lucide="download-cloud" class="w-6 h-6 text-fraction-400"></i>
 <div class="text-left rtl:text-right leading-tight">
-<span class="block text-[10px] uppercase font-normal text-slate-400">Direct APK</span>
-<span class="text-xs font-bold">Huawei / Android</span>
+<span class="block text-[10px] uppercase font-normal text-slate-400" data-i18n="dl-apk-sub">Direct APK</span>
+<span class="text-xs font-bold" data-i18n="dl-apk-title">Huawei / Android</span>
 </div>
 </a>
 
@@ -853,7 +858,7 @@ Start earning cashback with zero cards, zero bank linkages, and instant CliQ cas
 </div>
 <div>
 <label class="block text-xs font-semibold text-slate-700 mb-1" data-i18n="form-subject">Subject</label>
-<select class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500">
+<select id="contactSubject" class="w-full px-4 py-3 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-fraction-500">
 <option data-i18n="opt-support">General App Support</option>
 <option data-i18n="opt-cliq">CliQ Cashout Help</option>
 <option data-i18n="opt-partner">Merchant Partnership</option>
@@ -875,6 +880,102 @@ Send Message
 </div>
 </section>
 
+<!-- ================= 7. PRIVACY POLICY SECTION ================= -->
+<section id="privacy" class="py-20 bg-slate-50 border-t border-slate-200">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-left rtl:text-right">
+  <div class="bg-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fraction-100 text-fraction-700 text-xs font-bold">
+      <i data-lucide="shield-check" class="w-4 h-4"></i>
+      <span data-i18n="privacy-tag">Data Protection & Privacy</span>
+    </div>
+    
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight" data-i18n="privacy-title">
+      Privacy Policy
+    </h2>
+
+    <p class="text-xs text-slate-400 font-medium" data-i18n="privacy-updated">Last Updated: August 2026</p>
+
+    <div class="space-y-5 text-sm text-slate-600 leading-relaxed">
+      <div>
+        <h3 class="font-bold text-slate-900 mb-1.5" data-i18n="privacy-sec1-title">1. Information We Collect</h3>
+        <p data-i18n="privacy-sec1-desc">
+          Fraction Jordan operates on a privacy-first, cardless model. We collect your mobile phone number for account verification, your generated User ID for store QR scans, and your CliQ alias solely for processing cashback cashouts. We do not store or request credit card numbers, CVVs, or full bank passwords.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-slate-900 mb-1.5" data-i18n="privacy-sec2-title">2. How We Use Your Information</h3>
+        <p data-i18n="privacy-sec2-desc">
+          Your data is used to calculate and deposit cash rewards, process cashout requests via the Jordanian Central Bank CliQ system or approved agents, prevent fraudulent transactions, and display participating merchant listings in your area.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-slate-900 mb-1.5" data-i18n="privacy-sec3-title">3. Data Sharing & Security</h3>
+        <p data-i18n="privacy-sec3-desc">
+          We do not sell or rent your personal data to third parties. Merchants only verify your User ID at checkout and never gain access to your banking records or personal phone number without consent.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-slate-900 mb-1.5" data-i18n="privacy-sec4-title">4. Contacting Data Officer</h3>
+        <p data-i18n="privacy-sec4-desc">
+          For inquiries or data deletion requests, contact our privacy team in Amman at <span class="font-bold text-fraction-600">support@fractionjo.com</span>.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ================= 8. TERMS & CONDITIONS SECTION ================= -->
+<section id="terms" class="py-20 bg-white border-t border-slate-100">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-left rtl:text-right">
+  <div class="bg-slate-50 p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-fraction-100 text-fraction-700 text-xs font-bold">
+      <i data-lucide="file-text" class="w-4 h-4"></i>
+      <span data-i18n="terms-tag">User & Merchant Agreement</span>
+    </div>
+    
+    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight" data-i18n="terms-title">
+      Terms and Conditions
+    </h2>
+
+    <p class="text-xs text-slate-400 font-medium" data-i18n="terms-updated">Effective: 2026</p>
+
+    <div class="space-y-5 text-sm text-slate-600 leading-relaxed">
+      <div>
+        <h3 class="font-bold text-slate-900 mb-1.5" data-i18n="terms-sec1-title">1. Cashback Accrual & Redemption</h3>
+        <p data-i18n="terms-sec1-desc">
+          Cashback percentages are determined by individual merchant agreements in Jordan and calculated on the eligible subtotal of qualifying purchases. Cashback is credited in Jordanian Dinars (JOD) to your Fraction digital wallet immediately following scan verification.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-slate-900 mb-1.5" data-i18n="terms-sec2-title">2. CliQ & Cash Withdrawals</h3>
+        <p data-i18n="terms-sec2-desc">
+          Users may transfer their available cashback balance to any registered Jordanian bank account via CliQ or through designated cash agents in Jordan, subject to standard system availability and minimal verification thresholds.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-slate-900 mb-1.5" data-i18n="terms-sec3-title">3. Account Integrity & Fair Use</h3>
+        <p data-i18n="terms-sec3-desc">
+          Any attempt to forge QR scans, abuse referral promotions, or submit fictitious receipts will result in immediate suspension of the account and forfeiture of pending cashback balances.
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-bold text-slate-900 mb-1.5" data-i18n="terms-sec4-title">4. Governing Law</h3>
+        <p data-i18n="terms-sec4-desc">
+          These terms and conditions are governed by and construed in accordance with the laws of the Hashemite Kingdom of Jordan.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
 <!-- ================= FOOTER ================= -->
 <footer class="bg-slate-950 text-slate-400 py-10 border-t border-slate-800">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -888,13 +989,15 @@ Send Message
 <span class="text-xs text-slate-500 border-l rtl:border-r rtl:border-l-0 border-slate-800 pl-3 rtl:pr-3" data-i18n="footer-sub">Jordan Cardless Cashback</span>
 </div>
 
-<div class="flex flex-wrap gap-6 text-xs font-medium">
+<div class="flex flex-wrap justify-center gap-5 text-xs font-medium">
 <a href="#home" class="hover:text-white transition" data-i18n="nav-home">Home</a>
 <a href="#how-it-works" class="hover:text-white transition" data-i18n="nav-how">How it Works</a>
 <a href="#calculator" class="hover:text-white transition" data-i18n="nav-calc">Forecaster</a>
 <a href="#categories" class="hover:text-white transition" data-i18n="nav-categories">Categories</a>
 <a href="#stores" class="hover:text-white transition" data-i18n="nav-stores">Stores</a>
 <a href="market-calculator.html" class="text-fraction-400 hover:text-white transition" data-i18n="nav-merchant-insights">Merchant Insights</a>
+<a href="#privacy" class="hover:text-white transition" data-i18n="footer-privacy">Privacy Policy</a>
+<a href="#terms" class="hover:text-white transition" data-i18n="footer-terms">Terms & Conditions</a>
 <a href="#contact" class="hover:text-white transition" data-i18n="nav-contact">Contact</a>
 </div>
 
@@ -1079,6 +1182,12 @@ const translations = {
     "banner-insights-btn": "Open Market Calculator",
     "download-title": "Download Fraction Today",
     "download-sub": "Start earning cashback with zero cards, zero bank linkages, and instant CliQ cashout.",
+    "dl-appstore-sub": "Download on",
+    "dl-appstore-title": "App Store",
+    "dl-googleplay-sub": "GET IT ON",
+    "dl-googleplay-title": "Google Play",
+    "dl-apk-sub": "Direct APK",
+    "dl-apk-title": "Huawei / Android",
     "contact-tag": "Support & Inquiries",
     "contact-title": "Get in Touch",
     "contact-desc": "Questions about CliQ cashouts, store onboarding, or User ID rewards? Our Amman team is here to assist.",
@@ -1094,7 +1203,31 @@ const translations = {
     "opt-cliq": "CliQ Cashout Help",
     "opt-partner": "Merchant Partnership",
     "form-btn-send": "Send Message",
-    "footer-sub": "Jordan Cardless Cashback"
+    "footer-sub": "Jordan Cardless Cashback",
+    "footer-privacy": "Privacy Policy",
+    "footer-terms": "Terms & Conditions",
+    "privacy-tag": "Data Protection & Privacy",
+    "privacy-title": "Privacy Policy",
+    "privacy-updated": "Last Updated: August 2026",
+    "privacy-sec1-title": "1. Information We Collect",
+    "privacy-sec1-desc": "Fraction Jordan operates on a privacy-first, cardless model. We collect your mobile phone number for account verification, your generated User ID for store QR scans, and your CliQ alias solely for processing cashback cashouts. We do not store or request credit card numbers, CVVs, or full bank passwords.",
+    "privacy-sec2-title": "2. How We Use Your Information",
+    "privacy-sec2-desc": "Your data is used to calculate and deposit cash rewards, process cashout requests via the Jordanian Central Bank CliQ system or approved agents, prevent fraudulent transactions, and display participating merchant listings in your area.",
+    "privacy-sec3-title": "3. Data Sharing & Security",
+    "privacy-sec3-desc": "We do not sell or rent your personal data to third parties. Merchants only verify your User ID at checkout and never gain access to your banking records or personal phone number without consent.",
+    "privacy-sec4-title": "4. Contacting Data Officer",
+    "privacy-sec4-desc": "For inquiries or data deletion requests, contact our privacy team in Amman at support@fractionjo.com.",
+    "terms-tag": "User & Merchant Agreement",
+    "terms-title": "Terms and Conditions",
+    "terms-updated": "Effective: 2026",
+    "terms-sec1-title": "1. Cashback Accrual & Redemption",
+    "terms-sec1-desc": "Cashback percentages are determined by individual merchant agreements in Jordan and calculated on the eligible subtotal of qualifying purchases. Cashback is credited in Jordanian Dinars (JOD) to your Fraction digital wallet immediately following scan verification.",
+    "terms-sec2-title": "2. CliQ & Cash Withdrawals",
+    "terms-sec2-desc": "Users may transfer their available cashback balance to any registered Jordanian bank account via CliQ or through designated cash agents in Jordan, subject to standard system availability and minimal verification thresholds.",
+    "terms-sec3-title": "3. Account Integrity & Fair Use",
+    "terms-sec3-desc": "Any attempt to forge QR scans, abuse referral promotions, or submit fictitious receipts will result in immediate suspension of the account and forfeiture of pending cashback balances.",
+    "terms-sec4-title": "4. Governing Law",
+    "terms-sec4-desc": "These terms and conditions are governed by and construed in accordance with the laws of the Hashemite Kingdom of Jordan."
   },
   ar: {
     "nav-home": "الرئيسية",
@@ -1199,6 +1332,12 @@ const translations = {
     "banner-insights-btn": "فتح حاسبة السوق للتجار",
     "download-title": "حمّل تطبيق Fraction اليوم",
     "download-sub": "ابدأ بكسب الكاش باك بدون بطاقات بنكية مع سحب فوري لأي بنك عبر كليك (CliQ).",
+    "dl-appstore-sub": "حمل من",
+    "dl-appstore-title": "آب ستور (App Store)",
+    "dl-googleplay-sub": "متوفر على",
+    "dl-googleplay-title": "جوجل بلاي (Google Play)",
+    "dl-apk-sub": "تحميل مباشر APK",
+    "dl-apk-title": "هواوي / أندرويد",
     "contact-tag": "الدعم والاستفسارات",
     "contact-title": "تواصل مع فريقنا",
     "contact-desc": "لديك استفسار حول السحب عبر كليك، أو انضمام المتاجر؟ فريقنا في عمّان متواجد لمساعدتك.",
@@ -1214,7 +1353,31 @@ const translations = {
     "opt-cliq": "مساعدة في سحب كليك (CliQ)",
     "opt-partner": "طلب شراكة كمتجر",
     "form-btn-send": "إرسال الرسالة",
-    "footer-sub": "كاش باك الأردن بدون بطاقات"
+    "footer-sub": "كاش باك الأردن بدون بطاقات",
+    "footer-privacy": "سياسة الخصوصية",
+    "footer-terms": "الشروط والأحكام",
+    "privacy-tag": "حماية البيانات والخصوصية",
+    "privacy-title": "سياسة الخصوصية",
+    "privacy-updated": "آخر تحديث: آب 2026",
+    "privacy-sec1-title": "1. البيانات التي نجمعها",
+    "privacy-sec1-desc": "يعمل تطبيق Fraction على نموذج رقمي بدون بطاقات يراعي أعلى معايير الخصوصية. نقوم بجمع رقم هاتفك للتحقق من الحساب، ورقم المستخدم (User ID) لإتمام عمليات المسح داخل المحلات، واسم مستخدم كليك (CliQ Alias) فقط عند طلب السحب. نحن لا نطلب أو نخزن أي أرقام بطاقات ائتمانية أو كلمات مرور بنكية.",
+    "privacy-sec2-title": "2. كيفية استخدام البيانات",
+    "privacy-sec2-desc": "تُستخدم البيانات لاحتساب وإيداع مكافآت الكاش باك، ومعالجة طلبات السحب عبر نظام كليك التابع للبنك المركزي الأردني أو الوكلاء المعتمدين، وحماية الحسابات من أي احتيال، وعرض المتاجر القريبة منك.",
+    "privacy-sec3-title": "3. أمان البيانات والمشاركة",
+    "privacy-sec3-desc": "نحن لا نبيع أو نؤجر أي بيانات شخصية لأي جهة ثالثة. يقتصر دور التاجر على مسح الرمز التعريفي دون الوصول لمعلوماتك المصرفية أو رقم هاتفك الشخصي.",
+    "privacy-sec4-title": "4. التواصل مع مسؤول الخصوصية",
+    "privacy-sec4-desc": "لأي استفسارات تتعلق بالخصوصية أو طلب حذف البيانات، يرجى مراسلة فريقنا في عمّان عبر support@fractionjo.com.",
+    "terms-tag": "اتفاقية المستخدم والشركاء",
+    "terms-title": "الشروط والأحكام",
+    "terms-updated": "ساري المفعول: 2026",
+    "terms-sec1-title": "1. احتساب وصرف الكاش باك",
+    "terms-sec1-desc": "تُحدد نسب الكاش باك بناءً على الاتفاقيات مع المتاجر الشريكة في الأردن، وتُحسب على قيمة الفاتورة المؤهلة. يُضاف الكاش باك بالدينار الأردني إلى محفظتك الرقمية مباشرة بعد مسح الرمز لدى الكاشير.",
+    "terms-sec2-title": "2. السحب عبر كليك (CliQ) والوكلاء",
+    "terms-sec2-desc": "يحق للمستخدم تحويل رصيد الكاش باك المتاح إلى أي حساب بنكي أردني عبر كليك أو من خلال وكلاء الكاش المعتمدين وفق الشروط الفنية المتبعة.",
+    "terms-sec3-title": "3. نزاهة الحساب والاستخدام العادل",
+    "terms-sec3-desc": "أي محاولة لتزييف عمليات المسح أو التلاعب بالعروض الترويجية ستؤدي إلى إيقاف الحساب فوراً وإلغاء أي أرصدة كاش باك غير مشروعة.",
+    "terms-sec4-title": "4. القانون المعمول به",
+    "terms-sec4-desc": "تخضع هذه الشروط والأحكام وتفسر وفقاً للقوانين والأنظمة المعمول بها في المملكة الأردنية الهاشمية."
   }
 };
 
@@ -1261,22 +1424,60 @@ function toggleLanguage() {
 langToggleBtn.addEventListener('click', toggleLanguage);
 mobileLangToggleBtn.addEventListener('click', toggleLanguage);
 
+// 4. SUBMISSION HANDLERS ROUTING TO support@fractionjo.com
 function handlePartnerSubmit(e) {
-e.preventDefault();
-const msg = currentLang === 'ar' 
-  ? 'شكراً لك! سيقوم ممثل شبكة شركاء Fraction بالتواصل معك قريباً.' 
-  : 'Thank you! A Fraction partner representative will reach out to you shortly.';
-alert(msg);
-e.target.reset();
+  e.preventDefault();
+  
+  const storeName = document.getElementById('partnerStoreName').value;
+  const storeLoc = document.getElementById('partnerStoreLoc').value;
+  const phone = document.getElementById('partnerPhone').value;
+  const email = document.getElementById('partnerEmail').value;
+  
+  const subject = encodeURIComponent(`Fraction Partner Application: ${storeName}`);
+  const body = encodeURIComponent(
+    `New Partner Request from Fraction Website:\n\n` +
+    `Store / Brand Name: ${storeName}\n` +
+    `Location / City: ${storeLoc}\n` +
+    `Phone: ${phone}\n` +
+    `Business Email: ${email}\n\n` +
+    `Submitted from Fraction Jordan Portal`
+  );
+
+  window.location.href = `mailto:support@fractionjo.com?subject=${subject}&body=${body}`;
+
+  const msg = currentLang === 'ar' 
+    ? 'شكراً لك! تم تحضير طلب الشراكة لإرساله إلى support@fractionjo.com، وسيتواصل فريقنا معك قريباً.' 
+    : 'Thank you! Your partnership request email to support@fractionjo.com has been prepared.';
+  alert(msg);
+  e.target.reset();
 }
 
 function handleContactSubmit(e) {
-e.preventDefault();
-const msg = currentLang === 'ar' 
-  ? 'تم إرسال رسالتك بنجاح إلى فريق الدعم في عمّان.' 
-  : 'Thank you! Your message has been sent to our Jordan support team.';
-alert(msg);
-e.target.reset();
+  e.preventDefault();
+
+  const name = document.getElementById('contactName').value;
+  const phone = document.getElementById('contactPhone').value;
+  const subjectSelect = document.getElementById('contactSubject');
+  const subjectVal = subjectSelect.options[subjectSelect.selectedIndex].text;
+  const message = document.getElementById('contactMsg').value;
+
+  const subject = encodeURIComponent(`Fraction Inquiries: ${subjectVal} - ${name}`);
+  const body = encodeURIComponent(
+    `New Contact Message from Fraction Website:\n\n` +
+    `Name: ${name}\n` +
+    `Phone: ${phone}\n` +
+    `Category: ${subjectVal}\n\n` +
+    `Message:\n${message}\n\n` +
+    `Sent from Fraction Jordan Support Form`
+  );
+
+  window.location.href = `mailto:support@fractionjo.com?subject=${subject}&body=${body}`;
+
+  const msg = currentLang === 'ar' 
+    ? 'تم تحضير رسالتك لإرسالها مباشرة إلى support@fractionjo.com.' 
+    : 'Your message has been prepared for support@fractionjo.com.';
+  alert(msg);
+  e.target.reset();
 }
 </script>
 </body>
